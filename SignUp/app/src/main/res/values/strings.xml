@@ -6,4 +6,5 @@
     <string name="separate">-</string>
     <string name="sex">성별</string>
     <string name="base_sex">남</string>
+    <string name="password">password</string>
 </resources>

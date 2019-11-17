@@ -41,16 +41,35 @@
                     android:textColor="@android:color/black"
                     android:textSize="30sp" />
 
-                <EditText
-                    android:id="@+id/email"
+                <LinearLayout
+                    android:id="@+id/email_wrapper"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="8dp"
-                    android:layout_weight="1"
-                    android:ems="10"
-                    android:fontFamily="@font/main_font"
-                    android:hint="@string/e_mail"
-                    android:inputType="textEmailSubject" />
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <EditText
+                        android:id="@+id/email_edit"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="8dp"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:fontFamily="@font/main_font"
+                        android:hint="@string/e_mail"
+                        android:inputType="textEmailSubject" />
+
+                    <TextView
+                        android:id="@+id/email_state"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="4dp"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/main_font"
+                        android:gravity="center"
+                        android:text="@{vm.emailText}"
+                        android:textColor="@{vm.emailState ? @color/blue : @color/red}"
+                        android:textSize="12sp" />
+                </LinearLayout>
 
                 <EditText
                     android:id="@+id/password"
@@ -60,7 +79,7 @@
                     android:layout_weight="1"
                     android:ems="10"
                     android:fontFamily="@font/main_font"
-                    android:hint="password"
+                    android:hint="@string/password"
                     android:inputType="textPassword" />
 
                 <EditText

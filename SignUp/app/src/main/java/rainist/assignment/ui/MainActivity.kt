@@ -1,6 +1,8 @@
 package rainist.assignment.ui
 
 import android.os.Bundle
+import androidx.core.widget.addTextChangedListener
+import kotlinx.android.synthetic.main.activity_main.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import rainist.assignment.R
 import rainist.assignment.base.BaseActivity
@@ -17,9 +19,15 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
         super.onCreate(savedInstanceState)
         with(binding) {
             vm = viewModel.apply {
-                //TODO SOMETHING
+                email_edit.addTextChangedListener {
+                    checkEmailValidation(it.toString()) //TODO 나중에 Two-Way Binding으로 바꾸기
+                }
             }
         }
+    }
 
+    override fun onStop() {
+        viewModel.clearDisposable()
+        super.onStop()
     }
 }
