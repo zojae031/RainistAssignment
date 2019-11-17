@@ -1,7 +1,8 @@
-package rainist.assignment
+package rainist.assignment.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import rainist.assignment.R
 
 class MainActivity : AppCompatActivity() {
 

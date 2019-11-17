@@ -56,4 +56,5 @@ dependencies {
     implementation "org.koin:koin-androidx-ext:$koin_version"
     // Timber
     implementation 'com.jakewharton.timber:timber:4.7.1'
+    implementation 'androidx.recyclerview:recyclerview:1.0.0'
 }
