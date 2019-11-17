@@ -71,16 +71,50 @@
                         android:textSize="12sp" />
                 </LinearLayout>
 
-                <EditText
-                    android:id="@+id/password"
+                <LinearLayout
+                    android:id="@+id/password_wrapper"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="8dp"
-                    android:layout_weight="1"
-                    android:ems="10"
-                    android:fontFamily="@font/main_font"
-                    android:hint="@string/password"
-                    android:inputType="textPassword" />
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <EditText
+                        android:id="@+id/password"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="8dp"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:fontFamily="@font/main_font"
+                        android:hint="@string/password"
+                        android:inputType="textPassword"
+                        android:selectAllOnFocus="true"
+                        android:textColor="@color/black" />
+
+                    <EditText
+                        android:id="@+id/password2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="8dp"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:fontFamily="@font/main_font"
+                        android:hint="@string/password"
+                        android:inputType="textPassword"
+                        android:selectAllOnFocus="true"
+                        android:textColor="@color/black" />
+
+                    <TextView
+                        android:id="@+id/password_state"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="4dp"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/main_font"
+                        android:gravity="center"
+                        android:text="@{vm.passwordText}"
+                        android:textColor="@{vm.passwordState ? @color/blue : @color/red}"
+                        android:textSize="12sp" />
+                </LinearLayout>
 
                 <EditText
                     android:id="@+id/name"
@@ -140,7 +174,8 @@
                             android:layout_weight="1"
                             android:ems="7"
                             android:fontFamily="@font/main_font"
-                            android:inputType="textPersonName" />
+                            android:inputType="textPersonName"
+                            android:text="1" />
                     </LinearLayout>
 
                     <LinearLayout

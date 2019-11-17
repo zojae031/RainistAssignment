@@ -22,6 +22,9 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
                 email_edit.addTextChangedListener {
                     checkEmailValidation(it.toString()) //TODO 나중에 Two-Way Binding으로 바꾸기
                 }
+                password2.addTextChangedListener {
+                    checkPasswordValidation(password.text.toString(), password2.text.toString())
+                }
             }
         }
     }
