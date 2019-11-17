@@ -62,6 +62,11 @@ class MainViewModel : BaseViewModel() {
     //sex
     val sex = MutableLiveData<ValidationUtil.IdentifyState>(ERROR)
 
+    //permissionList
+    private val _permissionList = MutableLiveData<Array<Boolean>>(arrayOf(false, false, false))
+    val permissionList: LiveData<Array<Boolean>>
+        get() = _permissionList
+
     fun checkEmailValidation(email: String) {
         if (ValidationUtil.checkEmail(email)) {
             _emailStateText.value = EMAIL_SUCCESS
@@ -111,6 +116,7 @@ class MainViewModel : BaseViewModel() {
                 ERROR
         }
     }
+
 
     override fun clearDisposable() {
         compositeDisposable.clear()

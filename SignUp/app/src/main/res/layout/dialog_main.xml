@@ -3,115 +3,60 @@
 
     <data>
 
+        <variable
+            name="vm"
+            type="rainist.assignment.viewmodel.MainViewModel" />
     </data>
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <LinearLayout
-            android:layout_width="match_parent"
+        <CheckBox
+
+            android:id="@+id/all_permission"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_margin="4dp"
+            android:fontFamily="@font/main_font"
+            android:gravity="center"
+            android:text="@string/all_permission" />
 
-            <TextView
-
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_margin="4dp"
-                android:layout_weight="1"
-                android:fontFamily="@font/main_font"
-                android:gravity="center"
-                android:text="전체동의" />
-
-            <CheckBox
-
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_margin="4dp"
-                android:layout_weight="1"
-                android:fontFamily="@font/main_font"
-                android:text="선택" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
+        <CheckBox
+            android:id="@+id/checkBox"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_margin="4dp"
+            android:fontFamily="@font/main_font"
+            android:gravity="center"
+            android:text="@string/usable_permission" />
 
-            <TextView
-                android:id="@+id/textView2"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_margin="4dp"
-                android:layout_weight="1"
-                android:fontFamily="@font/main_font"
-                android:gravity="center"
-                android:text="이용약관동의" />
-
-            <CheckBox
-                android:id="@+id/checkBox2"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_margin="4dp"
-                android:layout_weight="1"
-                android:fontFamily="@font/main_font"
-                android:text="필수" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
+        <CheckBox
+            android:id="@+id/checkBox2"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_margin="4dp"
+            android:fontFamily="@font/main_font"
+            android:gravity="center"
+            android:text="@string/third_permission" />
 
-            <TextView
-                android:id="@+id/textView"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_margin="4dp"
-                android:layout_weight="1"
-                android:fontFamily="@font/main_font"
-                android:gravity="center"
-                android:text="제3자 이용약관동의" />
+        <CheckBox
 
-            <CheckBox
-                android:id="@+id/checkBox"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_margin="4dp"
-                android:layout_weight="1"
-                android:fontFamily="@font/main_font"
-                android:text="필수" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_margin="4dp"
+            android:fontFamily="@font/main_font"
+            android:gravity="center"
+            android:text="@string/marketing_permission" />
 
-            <TextView
-
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_margin="4dp"
-                android:layout_weight="1"
-                android:fontFamily="@font/main_font"
-                android:gravity="center"
-                android:text="마케팅수신동의" />
-
-            <CheckBox
-
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_margin="4dp"
-                android:layout_weight="1"
-                android:fontFamily="@font/main_font"
-                android:text="선택" />
-
-        </LinearLayout>
+        <Button
+            android:id="@+id/submit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="8dp"
+            android:gravity="center"
+            android:text="@string/submit" />
     </LinearLayout>
 </layout>

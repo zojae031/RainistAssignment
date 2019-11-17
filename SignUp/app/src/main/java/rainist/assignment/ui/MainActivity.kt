@@ -32,8 +32,13 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
                     checkIdentifyValidation(it.toString())
                     identify.setSelection(identify.length())
                 }
+                activity = this@MainActivity
             }
         }
+    }
+
+    fun showDialog() {
+        MainDialog().show(supportFragmentManager, "MainDialog")
     }
 
     override fun onStop() {
