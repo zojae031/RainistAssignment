@@ -20,5 +20,6 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
                 //TODO SOMETHING
             }
         }
+
     }
 }

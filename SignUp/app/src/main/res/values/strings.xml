@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">SignUp</string>
+    <string name="e_mail">E-mail</string>
+    <string name="title">회원가입</string>
+    <string name="name">name</string>
+    <string name="separate">-</string>
+    <string name="sex">성별</string>
+    <string name="base_sex">남</string>
 </resources>
