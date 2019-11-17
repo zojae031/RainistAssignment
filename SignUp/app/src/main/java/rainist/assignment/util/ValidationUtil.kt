@@ -1,17 +1,11 @@
 package rainist.assignment.util
 
 object ValidationUtil {
-    fun checkEmail(email: String): Boolean {
-        val splitEmail = email.split("@")
-        return when {
-            splitEmail.size == 2 -> {
-                splitEmail[splitEmail.lastIndex].split(".").run {
-                    size == 2 && this[this.lastIndex].isNotEmpty()
-                }
-            }
-            else -> false
-        }
-    }
+    fun checkEmail(email: String): Boolean =
+        email.matches(
+            Regex("^([\\w-]+(?:\\.[\\w-]+)*)@((?:[\\w-]+\\.)*\\w[\\w-]{0,66})\\.([a-z]{2,6}(?:\\.[a-z]{2})?)\$")
+        )
+
 
     fun checkPassword(pw1: String, pw2: String) = pw1 == pw2
     /**
@@ -22,7 +16,8 @@ object ValidationUtil {
      */
     fun checkName(name: String) = name.length < 10
 
-    fun checkIdentifyFirst(id: String): Boolean = id.length == 6
+    fun checkIdentify(id: String): Boolean =
+        id.matches(Regex("^(?:[0-9]{2}(?:0[1-9]|1[0-2])(?:0[1-9]|[1,2][0-9]|3[0,1]))-[1-4][0-9]{6}\$"))
 
 
     fun checkIdentifySex(id: String): IdentifyState {
@@ -35,11 +30,10 @@ object ValidationUtil {
         }
     }
 
-    fun checkIdentifyLast(id: String): Boolean = id.length == 7
-
 
     enum class IdentifyState {
         MALE, FEMALE, ERROR
     }
+
 }
 

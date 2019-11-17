@@ -20,14 +20,14 @@ class MainViewModel : BaseViewModel() {
     val emailStateText: LiveData<String>
         get() = _emailStateText
 
-    private val _emailState = MutableLiveData<Boolean>()
+    private val _emailState = MutableLiveData<Boolean>(false)
     val emailState: LiveData<Boolean>
         get() = _emailState
 
     //Password
     val passwordText = MutableLiveData<String>()
 
-    private val _passwordState = MutableLiveData<Boolean>()
+    private val _passwordState = MutableLiveData<Boolean>(false)
     val passwordState: LiveData<Boolean>
         get() = _passwordState
 
@@ -38,7 +38,7 @@ class MainViewModel : BaseViewModel() {
     //Name
     val nameText = MutableLiveData<String>()
 
-    private val _nameState = MutableLiveData<Boolean>()
+    private val _nameState = MutableLiveData<Boolean>(false)
     val nameState: LiveData<Boolean>
         get() = _nameState
 
@@ -51,11 +51,11 @@ class MainViewModel : BaseViewModel() {
     val identifyText: LiveData<String>
         get() = _identifyText
 
-    private val _identifyStateText = MutableLiveData<String>()
+    private val _identifyStateText = MutableLiveData<String>("")
     val identifyStateText: LiveData<String>
         get() = _identifyStateText
 
-    private val _identifyState = MutableLiveData<Boolean>()
+    private val _identifyState = MutableLiveData<Boolean>(false)
     val identifyState: LiveData<Boolean>
         get() = _identifyState
 
@@ -73,6 +73,7 @@ class MainViewModel : BaseViewModel() {
     }
 
     fun checkPasswordValidation(pw1: String, pw2: String) {
+        if (pw1.isEmpty() && pw2.isEmpty()) _passwordState.value = false
         if (ValidationUtil.checkPassword(pw1, pw2)) {
             _passwordState.value = true
             _passwordStateText.value = PASSWORD_SUCCESS
@@ -93,29 +94,21 @@ class MainViewModel : BaseViewModel() {
     }
 
     fun checkIdentifyValidation(identify: String) {
-        if (ValidationUtil.checkIdentifyFirst(identify)) {
-            _identifyText.value += "$identify-"
+        _identifyText.value = identify
+        if (ValidationUtil.checkIdentify(identify)) {
+            _identifyStateText.value = IDENTIFY_SUCCESS
+            _identifyState.value = true
         } else {
-            when (ValidationUtil.checkIdentifySex(identify.substringAfterLast('-'))) {
-                MALE -> sex.value =
-                    MALE
-                FEMALE -> sex.value =
-                    FEMALE
-                ERROR -> sex.value =
-                    ERROR
-            }
             _identifyStateText.value = IDENTIFY_ERR
             _identifyState.value = false
         }
-
-        if (sex.value != ERROR && ValidationUtil.checkIdentifyLast(
-                identify.substringAfterLast(
-                    '-'
-                )
-            )
-        ) {
-            _identifyStateText.value = IDENTIFY_SUCCESS
-            _identifyState.value = true
+        when (ValidationUtil.checkIdentifySex(identify.substringAfterLast('-'))) {
+            MALE -> sex.value =
+                MALE
+            FEMALE -> sex.value =
+                FEMALE
+            ERROR -> sex.value =
+                ERROR
         }
     }
 

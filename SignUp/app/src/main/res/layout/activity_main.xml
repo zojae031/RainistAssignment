@@ -60,7 +60,7 @@
                         android:ems="10"
                         android:fontFamily="@font/main_font"
                         android:hint="@string/e_mail"
-                        android:inputType="textEmailSubject"
+                        android:inputType="textWebEmailAddress"
                         android:text="@={vm.emailText}" />
 
                     <TextView
@@ -177,9 +177,10 @@
                         android:layout_height="wrap_content"
                         android:layout_margin="4dp"
                         android:layout_weight="1"
+                        android:digits="0123456789-"
                         android:ems="6"
                         android:fontFamily="@font/main_font"
-                        android:inputType="number"
+                        android:inputType="numberSigned"
                         android:text="@{vm.identifyText}" />
 
                     <TextView
