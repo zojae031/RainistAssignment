@@ -2,6 +2,7 @@ package rainist.assignment.ui
 
 import android.os.Bundle
 import android.view.View
+import androidx.lifecycle.Observer
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import rainist.assignment.R
 import rainist.assignment.base.BaseFragmentDialog
@@ -16,7 +17,9 @@ class MainDialog : BaseFragmentDialog<DialogMainBinding>() {
         super.onViewCreated(view, savedInstanceState)
         with(binding) {
             vm = viewModel.apply {
-
+                allPermission.observe(this@MainDialog, Observer {
+                    checkAllPermission(it)
+                })
             }
         }
     }

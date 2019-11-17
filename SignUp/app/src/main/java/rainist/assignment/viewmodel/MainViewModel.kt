@@ -3,14 +3,14 @@ package rainist.assignment.viewmodel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import rainist.assignment.base.BaseViewModel
-import rainist.assignment.data.dao.UserEntitiy
+import rainist.assignment.data.dao.UserEntity
 import rainist.assignment.util.ValidationUtil
 import rainist.assignment.util.ValidationUtil.IdentifyState.*
 
 class MainViewModel : BaseViewModel() {
 
-    private val _user = MutableLiveData<UserEntitiy>()
-    val user: LiveData<UserEntitiy>
+    private val _user = MutableLiveData<UserEntity>()
+    val user: LiveData<UserEntity>
         get() = _user
 
     //Email
@@ -63,9 +63,11 @@ class MainViewModel : BaseViewModel() {
     val sex = MutableLiveData<ValidationUtil.IdentifyState>(ERROR)
 
     //permissionList
-    private val _permissionList = MutableLiveData<Array<Boolean>>(arrayOf(false, false, false))
-    val permissionList: LiveData<Array<Boolean>>
-        get() = _permissionList
+
+    val allPermission = MutableLiveData<Boolean>(false)
+    val permissionList =
+        arrayOf(MutableLiveData(false), MutableLiveData(false), MutableLiveData(false))
+
 
     fun checkEmailValidation(email: String) {
         if (ValidationUtil.checkEmail(email)) {
@@ -117,6 +119,11 @@ class MainViewModel : BaseViewModel() {
         }
     }
 
+    fun checkAllPermission(check: Boolean) {
+        permissionList.map {
+            it.value = check
+        }
+    }
 
     override fun clearDisposable() {
         compositeDisposable.clear()

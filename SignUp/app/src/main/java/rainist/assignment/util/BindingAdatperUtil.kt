@@ -1,6 +1,7 @@
 package rainist.assignment.util
 
 import android.graphics.Color
+import android.widget.CheckBox
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import rainist.assignment.util.ValidationUtil.IdentifyState
@@ -27,6 +28,11 @@ fun TextView.setSex(sex: IdentifyState) {
             }
         }
     }
+}
+
+@BindingAdapter("check")
+fun CheckBox.checking(isChecked: Boolean) {
+    setChecked(isChecked)
 }
 
 @JvmField

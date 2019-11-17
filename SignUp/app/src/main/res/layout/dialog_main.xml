@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
@@ -19,6 +20,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="4dp"
+            android:checked="@={vm.allPermission}"
             android:fontFamily="@font/main_font"
             android:gravity="center"
             android:text="@string/all_permission" />
@@ -30,7 +32,8 @@
             android:layout_margin="4dp"
             android:fontFamily="@font/main_font"
             android:gravity="center"
-            android:text="@string/usable_permission" />
+            android:text="@string/usable_permission"
+            app:check="@{vm.permissionList[0]}" />
 
         <CheckBox
             android:id="@+id/checkBox2"
@@ -39,7 +42,8 @@
             android:layout_margin="4dp"
             android:fontFamily="@font/main_font"
             android:gravity="center"
-            android:text="@string/third_permission" />
+            android:text="@string/third_permission"
+            app:check="@{vm.permissionList[1]}" />
 
         <CheckBox
 
@@ -48,7 +52,8 @@
             android:layout_margin="4dp"
             android:fontFamily="@font/main_font"
             android:gravity="center"
-            android:text="@string/marketing_permission" />
+            android:text="@string/marketing_permission"
+            app:check="@{vm.permissionList[2]}" />
 
         <Button
             android:id="@+id/submit"
