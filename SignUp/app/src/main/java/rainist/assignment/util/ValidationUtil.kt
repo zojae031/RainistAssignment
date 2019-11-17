@@ -20,6 +20,8 @@ object ValidationUtil {
      * 2. 동일숫자 3번 연속되면 막기 (ex : 111, 222...)
      * 3. 연속하는 숫자/글자 막기 (ex : abc, 123...)
      */
+    fun checkName(name: String) = name.length < 10
+
 
 }
 

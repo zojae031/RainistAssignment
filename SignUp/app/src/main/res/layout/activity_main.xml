@@ -5,6 +5,8 @@
 
     <data>
 
+        <import type="android.view.View" />
+
         <variable
             name="vm"
             type="rainist.assignment.viewmodel.MainViewModel" />
@@ -56,7 +58,8 @@
                         android:ems="10"
                         android:fontFamily="@font/main_font"
                         android:hint="@string/e_mail"
-                        android:inputType="textEmailSubject" />
+                        android:inputType="textEmailSubject"
+                        android:text="@={vm.emailText}" />
 
                     <TextView
                         android:id="@+id/email_state"
@@ -66,9 +69,10 @@
                         android:layout_weight="1"
                         android:fontFamily="@font/main_font"
                         android:gravity="center"
-                        android:text="@{vm.emailText}"
+                        android:text="@{vm.emailStateText}"
                         android:textColor="@{vm.emailState ? @color/blue : @color/red}"
-                        android:textSize="12sp" />
+                        android:textSize="12sp"
+                        android:visibility="@{vm.emailText.empty ? View.GONE : View.VISIBLE}" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -88,6 +92,7 @@
                         android:hint="@string/password"
                         android:inputType="textPassword"
                         android:selectAllOnFocus="true"
+                        android:text="@={vm.passwordText}"
                         android:textColor="@color/black" />
 
                     <EditText
@@ -111,20 +116,42 @@
                         android:layout_weight="1"
                         android:fontFamily="@font/main_font"
                         android:gravity="center"
-                        android:text="@{vm.passwordText}"
+                        android:text="@{vm.passwordStateText}"
                         android:textColor="@{vm.passwordState ? @color/blue : @color/red}"
-                        android:textSize="12sp" />
+                        android:textSize="12sp"
+                        android:visibility="@{vm.passwordText.empty ? View.GONE : View.VISIBLE}" />
                 </LinearLayout>
 
-                <EditText
-                    android:id="@+id/name"
+                <LinearLayout
+                    android:id="@+id/name_wrapper"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="8dp"
-                    android:ems="10"
-                    android:fontFamily="@font/main_font"
-                    android:hint="@string/name"
-                    android:inputType="textPersonName" />
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <EditText
+                        android:id="@+id/name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="8dp"
+                        android:ems="10"
+                        android:fontFamily="@font/main_font"
+                        android:hint="@string/name"
+                        android:inputType="textPersonName"
+                        android:text="@={vm.nameText}" />
+
+                    <TextView
+                        android:id="@+id/name_state"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="4dp"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/main_font"
+                        android:gravity="center"
+                        android:text="@{vm.nameStateText}"
+                        android:textColor="@{vm.nameState ? @color/blue : @color/red}"
+                        android:textSize="12sp"
+                        android:visibility="@{vm.nameText.empty ? View.GONE: View.VISIBLE}" />
+                </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"

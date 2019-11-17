@@ -1,4 +1,4 @@
-package rainist.assignment.data
+package rainist.assignment.data.dao
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

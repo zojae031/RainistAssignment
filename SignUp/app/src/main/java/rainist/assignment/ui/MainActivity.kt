@@ -25,6 +25,9 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
                 password2.addTextChangedListener {
                     checkPasswordValidation(password.text.toString(), password2.text.toString())
                 }
+                name.addTextChangedListener {
+                    checkNameValidation(it.toString())
+                }
             }
         }
     }
