@@ -22,6 +22,24 @@ object ValidationUtil {
      */
     fun checkName(name: String) = name.length < 10
 
+    fun checkIdentifyFirst(id: String): Boolean = id.length == 6
 
+
+    fun checkIdentifySex(id: String): IdentifyState {
+        return when {
+            id.startsWith('1') -> IdentifyState.MALE
+            id.startsWith('2') -> IdentifyState.FEMALE
+            id.startsWith('3') -> IdentifyState.MALE
+            id.startsWith('4') -> IdentifyState.FEMALE
+            else -> IdentifyState.ERROR
+        }
+    }
+
+    fun checkIdentifyLast(id: String): Boolean = id.length == 7
+
+
+    enum class IdentifyState {
+        MALE, FEMALE, ERROR
+    }
 }
 

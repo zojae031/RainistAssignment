@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import rainist.assignment.base.BaseViewModel
 import rainist.assignment.data.dao.UserEntitiy
 import rainist.assignment.util.ValidationUtil
+import rainist.assignment.util.ValidationUtil.IdentifyState.*
 
 class MainViewModel : BaseViewModel() {
 
@@ -45,16 +46,29 @@ class MainViewModel : BaseViewModel() {
     val nameStateText: LiveData<String>
         get() = _nameStateText
 
+    //Identify
+    private val _identifyText = MutableLiveData<String>("")
+    val identifyText: LiveData<String>
+        get() = _identifyText
 
+    private val _identifyStateText = MutableLiveData<String>()
+    val identifyStateText: LiveData<String>
+        get() = _identifyStateText
 
+    private val _identifyState = MutableLiveData<Boolean>()
+    val identifyState: LiveData<Boolean>
+        get() = _identifyState
 
-    fun checkNameValidation(name: String) {
-        if (ValidationUtil.checkName(name)) {
-            _nameState.value = true
-            _nameStateText.value = NAME_SUCCESS
+    //sex
+    val sex = MutableLiveData<ValidationUtil.IdentifyState>(ERROR)
+
+    fun checkEmailValidation(email: String) {
+        if (ValidationUtil.checkEmail(email)) {
+            _emailStateText.value = EMAIL_SUCCESS
+            _emailState.value = true
         } else {
-            _nameState.value = false
-            _nameStateText.value = NAME_ERR
+            _emailStateText.value = EMAIL_ERR
+            _emailState.value = false
         }
     }
 
@@ -68,13 +82,40 @@ class MainViewModel : BaseViewModel() {
         }
     }
 
-    fun checkEmailValidation(email: String) {
-        if (ValidationUtil.checkEmail(email)) {
-            _emailStateText.value = EMAIL_SUCCESS
-            _emailState.value = true
+    fun checkNameValidation(name: String) {
+        if (ValidationUtil.checkName(name)) {
+            _nameState.value = true
+            _nameStateText.value = NAME_SUCCESS
         } else {
-            _emailStateText.value = EMAIL_ERR
-            _emailState.value = false
+            _nameState.value = false
+            _nameStateText.value = NAME_ERR
+        }
+    }
+
+    fun checkIdentifyValidation(identify: String) {
+        if (ValidationUtil.checkIdentifyFirst(identify)) {
+            _identifyText.value += "$identify-"
+        } else {
+            when (ValidationUtil.checkIdentifySex(identify.substringAfterLast('-'))) {
+                MALE -> sex.value =
+                    MALE
+                FEMALE -> sex.value =
+                    FEMALE
+                ERROR -> sex.value =
+                    ERROR
+            }
+            _identifyStateText.value = IDENTIFY_ERR
+            _identifyState.value = false
+        }
+
+        if (sex.value != ERROR && ValidationUtil.checkIdentifyLast(
+                identify.substringAfterLast(
+                    '-'
+                )
+            )
+        ) {
+            _identifyStateText.value = IDENTIFY_SUCCESS
+            _identifyState.value = true
         }
     }
 
@@ -95,5 +136,9 @@ class MainViewModel : BaseViewModel() {
         val NAME_SUCCESS = "올바른 이름 입니다."
         @JvmStatic
         val NAME_ERR = "이름은 10글자를 넘을 수 없습니다."
+        @JvmStatic
+        val IDENTIFY_SUCCESS = "올바른 주민번호입니다."
+        @JvmStatic
+        val IDENTIFY_ERR = "잘못된 주민번호입니다."
     }
 }

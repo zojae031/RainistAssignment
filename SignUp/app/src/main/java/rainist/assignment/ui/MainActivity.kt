@@ -20,13 +20,17 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
         with(binding) {
             vm = viewModel.apply {
                 email_edit.addTextChangedListener {
-                    checkEmailValidation(it.toString()) //TODO 나중에 Two-Way Binding으로 바꾸기
+                    checkEmailValidation(it.toString())
                 }
                 password2.addTextChangedListener {
                     checkPasswordValidation(password.text.toString(), password2.text.toString())
                 }
                 name.addTextChangedListener {
                     checkNameValidation(it.toString())
+                }
+                identify.addTextChangedListener {
+                    checkIdentifyValidation(it.toString())
+                    identify.setSelection(identify.length())
                 }
             }
         }

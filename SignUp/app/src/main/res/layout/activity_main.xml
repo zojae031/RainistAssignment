@@ -7,6 +7,8 @@
 
         <import type="android.view.View" />
 
+        <import type="rainist.assignment.util.ValidationUtil.IdentifyState" />
+
         <variable
             name="vm"
             type="rainist.assignment.viewmodel.MainViewModel" />
@@ -154,10 +156,12 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/identify_wrapper"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_margin="8dp"
-                    android:orientation="vertical">
+                    android:layout_margin="16dp"
+                    android:orientation="vertical"
+                    android:padding="16dp">
 
                     <TextView
                         android:id="@+id/explain"
@@ -167,45 +171,32 @@
                         android:gravity="center"
                         android:text="주민등록번호" />
 
-                    <LinearLayout
+                    <EditText
+                        android:id="@+id/identify"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="horizontal">
+                        android:layout_height="wrap_content"
+                        android:layout_margin="4dp"
+                        android:layout_weight="1"
+                        android:ems="6"
+                        android:fontFamily="@font/main_font"
+                        android:inputType="number"
+                        android:text="@{vm.identifyText}" />
 
-                        <EditText
-                            android:id="@+id/first_id"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="4dp"
-                            android:layout_weight="1"
-                            android:ems="6"
-                            android:fontFamily="@font/main_font"
-                            android:inputType="textPersonName" />
-
-                        <TextView
-                            android:id="@+id/sperate"
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:layout_margin="4dp"
-                            android:layout_weight="1"
-                            android:fontFamily="@font/main_font"
-                            android:gravity="center"
-                            android:text="@string/separate"
-                            android:textSize="14sp" />
-
-                        <EditText
-                            android:id="@+id/second_id"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="4dp"
-                            android:layout_weight="1"
-                            android:ems="7"
-                            android:fontFamily="@font/main_font"
-                            android:inputType="textPersonName"
-                            android:text="1" />
-                    </LinearLayout>
+                    <TextView
+                        android:id="@+id/identify_state"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="4dp"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/main_font"
+                        android:gravity="center"
+                        android:text="@{vm.identifyStateText}"
+                        android:textColor="@{vm.identifyState ? @color/blue : @color/red}"
+                        android:textSize="12sp"
+                        android:visibility="@{vm.identifyStateText.empty ? View.GONE: View.VISIBLE}" />
 
                     <LinearLayout
+                        android:id="@+id/sex_wrapper"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_margin="8dp"
@@ -229,8 +220,7 @@
                             android:layout_weight="1"
                             android:fontFamily="@font/main_font"
                             android:gravity="left"
-                            android:text="@string/base_sex"
-                            android:textColor="@color/blue" />
+                            app:setSex="@{vm.sex}" />
                     </LinearLayout>
 
                 </LinearLayout>
@@ -242,7 +232,7 @@
                     android:layout_gravity="center"
                     android:layout_margin="8dp"
                     android:fontFamily="@font/main_font"
-                    android:text="Permission" />
+                    android:text="@string/permission" />
 
                 <Button
                     android:id="@+id/sign_up"
