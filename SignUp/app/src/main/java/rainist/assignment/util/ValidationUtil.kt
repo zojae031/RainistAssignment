@@ -30,7 +30,6 @@ object ValidationUtil {
         }
     }
 
-
     enum class IdentifyState {
         MALE, FEMALE, ERROR
     }

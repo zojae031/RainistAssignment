@@ -14,9 +14,9 @@ class MainViewModel : BaseViewModel() {
         get() = _user
 
     //Email
-    val emailText = MutableLiveData<String>()
+    val emailText = MutableLiveData<String>("")
 
-    private val _emailStateText = MutableLiveData<String>()
+    private val _emailStateText = MutableLiveData<String>("")
     val emailStateText: LiveData<String>
         get() = _emailStateText
 
@@ -25,24 +25,24 @@ class MainViewModel : BaseViewModel() {
         get() = _emailState
 
     //Password
-    val passwordText = MutableLiveData<String>()
+    val passwordText = MutableLiveData<String>("")
 
     private val _passwordState = MutableLiveData<Boolean>(false)
     val passwordState: LiveData<Boolean>
         get() = _passwordState
 
-    private val _passwordStateText = MutableLiveData<String>()
+    private val _passwordStateText = MutableLiveData<String>("")
     val passwordStateText: LiveData<String>
         get() = _passwordStateText
 
     //Name
-    val nameText = MutableLiveData<String>()
+    val nameText = MutableLiveData<String>("")
 
     private val _nameState = MutableLiveData<Boolean>(false)
     val nameState: LiveData<Boolean>
         get() = _nameState
 
-    private val _nameStateText = MutableLiveData<String>()
+    private val _nameStateText = MutableLiveData<String>("")
     val nameStateText: LiveData<String>
         get() = _nameStateText
 
