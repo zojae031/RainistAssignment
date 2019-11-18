@@ -247,6 +247,7 @@
                     android:layout_gravity="center"
                     android:layout_margin="8dp"
                     android:fontFamily="@font/main_font"
+                    android:onClick="@{()->vm.checkSignUpValidation()}"
                     android:text="@string/sign_up" />
 
             </LinearLayout>

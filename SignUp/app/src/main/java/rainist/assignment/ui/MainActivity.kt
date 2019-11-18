@@ -1,7 +1,9 @@
 package rainist.assignment.ui
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.core.widget.addTextChangedListener
+import androidx.lifecycle.Observer
 import kotlinx.android.synthetic.main.activity_main.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import rainist.assignment.R
@@ -33,6 +35,14 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
                     checkIdentifyValidation(it.toString())
                     identify.setSelection(identify.length())
                 }
+                signUpState.observe(this@MainActivity, Observer {
+                    if (it) {
+                        Toast.makeText(applicationContext, "앙 시작띠", Toast.LENGTH_SHORT).show()
+                    } else {
+                        Toast.makeText(applicationContext, "회원 정보를 입력하세요.", Toast.LENGTH_SHORT)
+                            .show()
+                    }
+                })
                 activity = this@MainActivity
             }
         }

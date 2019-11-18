@@ -61,7 +61,9 @@ class MainViewModel : BaseViewModel() {
         get() = _identifyState
 
     //sex
-    val sex = MutableLiveData<ValidationUtil.IdentifyState>(ERROR)
+    private val _sex = MutableLiveData<ValidationUtil.IdentifyState>(ERROR)
+    val sex: LiveData<ValidationUtil.IdentifyState>
+        get() = _sex
 
     //permissionList
     val permissionList = arrayOf(
@@ -74,6 +76,11 @@ class MainViewModel : BaseViewModel() {
     private val _permissionState = SingleLiveEvent<Boolean>()
     val permissionState: LiveData<Boolean>
         get() = _permissionState
+
+    //SignUp
+    private val _signUpState = MutableLiveData(false)
+    val signUpState: LiveData<Boolean>
+        get() = _signUpState
 
     fun checkEmailValidation(email: String) {
         if (ValidationUtil.checkEmail(email)) {
@@ -116,11 +123,11 @@ class MainViewModel : BaseViewModel() {
             _identifyState.value = false
         }
         when (ValidationUtil.checkIdentifySex(identify.substringAfterLast('-'))) {
-            MALE -> sex.value =
+            MALE -> _sex.value =
                 MALE
-            FEMALE -> sex.value =
+            FEMALE -> _sex.value =
                 FEMALE
-            ERROR -> sex.value =
+            ERROR -> _sex.value =
                 ERROR
         }
     }
@@ -131,6 +138,13 @@ class MainViewModel : BaseViewModel() {
 
     fun checkPermissionValidation() {
         _permissionState.value = (permissionList[1].value!! && permissionList[2].value!!)
+    }
+
+    fun checkSignUpValidation() {
+        _signUpState.value =
+            _emailState.value == true && _passwordState.value == true && _nameState.value == true && _identifyState.value == true && _permissionState.value == true
+
+
     }
 
     override fun clearDisposable() {
