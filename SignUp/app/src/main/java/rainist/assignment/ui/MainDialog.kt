@@ -19,12 +19,20 @@ class MainDialog : BaseFragmentDialog<DialogMainBinding>() {
         with(binding) {
             vm = viewModel.apply {
                 permissionState.observe(this@MainDialog, Observer {
-                    if (it) dismiss()
-                    else Toast.makeText(
-                        requireContext(),
-                        "필수 약관에 동의해야 합니다.",
-                        Toast.LENGTH_SHORT
-                    ).show()
+                    if (it) {
+                        Toast.makeText(
+                            requireContext(),
+                            "완료.",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                        dismiss()
+                    } else {
+                        Toast.makeText(
+                            requireContext(),
+                            "필수 약관에 동의해야 합니다.",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
                 })
             }
         }

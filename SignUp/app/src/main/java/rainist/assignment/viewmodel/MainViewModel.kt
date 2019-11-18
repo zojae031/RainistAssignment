@@ -78,7 +78,7 @@ class MainViewModel(private val repository: Repository) : BaseViewModel() {
     val sex: LiveData<ValidationUtil.IdentifyState>
         get() = _sex
 
-    //permissionList
+    //permission
     val permissionList = arrayOf(
         MutableLiveData(false),
         MutableLiveData(false),
@@ -89,6 +89,10 @@ class MainViewModel(private val repository: Repository) : BaseViewModel() {
     private val _permissionState = SingleLiveEvent<Boolean>()
     val permissionState: LiveData<Boolean>
         get() = _permissionState
+
+    private val _permissionColorState = MutableLiveData<Boolean>(false)
+    val permissionColorState: LiveData<Boolean>
+        get() = _permissionColorState
 
     //SignUp
     private val _signUpState = MutableLiveData(false)
@@ -112,11 +116,11 @@ class MainViewModel(private val repository: Repository) : BaseViewModel() {
 
     fun checkEmailValidation(email: String) {
         if (ValidationUtil.checkEmail(email)) {
-            _emailStateText.value = EMAIL_SUCCESS
             _emailState.value = true
+            _emailStateText.value = EMAIL_SUCCESS
         } else {
-            _emailStateText.value = EMAIL_ERR
             _emailState.value = false
+            _emailStateText.value = EMAIL_ERR
         }
     }
 
@@ -144,11 +148,11 @@ class MainViewModel(private val repository: Repository) : BaseViewModel() {
     fun checkIdentifyValidation(identify: String) {
         _identifyText.value = identify
         if (ValidationUtil.checkIdentify(identify)) {
-            _identifyStateText.value = IDENTIFY_SUCCESS
             _identifyState.value = true
+            _identifyStateText.value = IDENTIFY_SUCCESS
         } else {
-            _identifyStateText.value = IDENTIFY_ERR
             _identifyState.value = false
+            _identifyStateText.value = IDENTIFY_ERR
         }
         when (ValidationUtil.checkIdentifySex(identify.substringAfterLast('-'))) {
             MALE -> _sex.value =
@@ -166,12 +170,14 @@ class MainViewModel(private val repository: Repository) : BaseViewModel() {
 
     fun checkPermissionValidation() {
         _permissionState.value = (permissionList[1].value!! && permissionList[2].value!!)
+        _permissionColorState.value = (permissionList[1].value!! && permissionList[2].value!!)
     }
 
     fun checkSignUpValidation() {
         if (_emailState.value!! && _passwordState.value!! && _nameState.value!! && _identifyState.value!! && _permissionState.value == true) {
 
             _signUpState.value = true
+            _permissionColorState.value = (permissionList[1].value!! && permissionList[2].value!!)
 
             UserEntity(
                 tempIdData++,

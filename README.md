@@ -36,7 +36,7 @@
    # 2일차
    start : 2019-11-18 (09:49)
 
-   end : 2019-11-15 (xx:xx)
+   end : 2019-11-15 (20:12)
 
    ### Room과 JsonArray
 
@@ -105,10 +105,16 @@ password.addTextChangedListener {
 
 
 
-
-
 <hr>
+
+# 3일차
+start : 2019-11-19 (xx:xx)
+end : 2019-11-19 (xx:xx)
+
+
+
 # 다음 항목들을 반영해 주세요.
+
 
 #### 1.  각 입력 필드 별로 validation 적용 ``OK``
 #### 2. 입력 필드는 Material EditText ``OK``
