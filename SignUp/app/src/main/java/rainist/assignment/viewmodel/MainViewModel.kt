@@ -14,7 +14,7 @@ import rainist.assignment.util.ValidationUtil.IdentifyState.*
 import timber.log.Timber
 
 class MainViewModel(private val repository: Repository) : BaseViewModel() {
-
+    private var tempIdData = 0
     //Email
     val emailText = MutableLiveData<String>("")
 
@@ -145,7 +145,7 @@ class MainViewModel(private val repository: Repository) : BaseViewModel() {
         if (_emailState.value == true && _passwordState.value == true && _nameState.value == true && _identifyState.value == true && _permissionState.value == true) {
             _signUpState.value = true
             UserEntity(
-                "1",
+                tempIdData++,
                 emailText.value.toString(),
                 passwordText.value.toString(),
                 nameText.value.toString(),

@@ -8,9 +8,11 @@ import rainist.assignment.data.dao.UserEntity
 class RemoteDataSourceImpl : RemoteDataSource {
     override fun requestSignUp(entity: UserEntity): Single<String> {
         return Single.create(SingleOnSubscribe<String> {
-            if (entity.id == "1")
-                it.onError(throw Http401Exception())
-            else it.onSuccess("회원가입에 성공하였습니다.")
+            when {
+                entity.id == 1 -> it.onError(throw Http401Exception())
+                entity.id == 2 -> it.onError(throw Http404Exception())
+                else -> it.onSuccess(entity.toString())
+            }
         }).subscribeOn(Schedulers.io())
     }
 }
