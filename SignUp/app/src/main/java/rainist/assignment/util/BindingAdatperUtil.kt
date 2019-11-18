@@ -36,4 +36,4 @@ fun CheckBox.checking(isChecked: Boolean) {
 }
 
 @JvmField
-val SEX_STATE = arrayOf(Color.BLUE to "남자", Color.RED to "여자", Color.GRAY to "오류")
+val SEX_STATE = arrayOf(Color.BLUE to "남자", Color.RED to "여자", Color.GRAY to "-")

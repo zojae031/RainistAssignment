@@ -12,4 +12,6 @@
     <string name="usable_permission">이용약관동의(필수)</string>
     <string name="third_permission">제3자 이용약관동의(필수)</string>
     <string name="marketing_permission">마케팅수신동의(선택)</string>
+    <string name="sign_up">SignUp</string>
+    <string name="identify">주민등록번호</string>
 </resources>

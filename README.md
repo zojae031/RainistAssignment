@@ -15,10 +15,10 @@ Start : 2019-11-17 (11:17)
 
 
 
-end : 2019-11-17 (11:10)
+end : 2019-11-17 (23:10)
 
 # TODO LIST (11-18)
-
+start : 2019-11-18 (09:49)
 1. Permission Check해서 버튼 누르기
 2. password 별표 보이게 하기
 3. password 정규식 작성하기

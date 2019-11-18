@@ -173,7 +173,7 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/main_font"
                         android:gravity="center"
-                        android:text="주민등록번호" />
+                        android:text="@string/identify" />
 
                     <EditText
                         android:id="@+id/identify"
@@ -247,7 +247,7 @@
                     android:layout_gravity="center"
                     android:layout_margin="8dp"
                     android:fontFamily="@font/main_font"
-                    android:text="SingUp" />
+                    android:text="@string/sign_up" />
 
             </LinearLayout>
         </ScrollView>
