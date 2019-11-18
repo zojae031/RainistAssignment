@@ -23,6 +23,17 @@
         android:layout_height="match_parent"
         tools:context=".ui.MainActivity">
 
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="@{vm.loadingState ? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/scrollView2"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <ScrollView
             android:id="@+id/scrollView2"
             android:layout_width="match_parent"
@@ -94,12 +105,12 @@
                         android:layout_margin="8dp"
                         android:layout_weight="1"
                         android:ems="10"
-                        android:fontFamily="@font/main_font"
                         android:hint="@string/password"
                         android:inputType="textPassword"
                         android:selectAllOnFocus="true"
                         android:text="@={vm.passwordText}"
-                        android:textColor="@color/black" />
+                        android:textColor="@color/black"
+                        android:textStyle="bold" />
 
                     <EditText
                         android:id="@+id/password2"
@@ -108,11 +119,11 @@
                         android:layout_margin="8dp"
                         android:layout_weight="1"
                         android:ems="10"
-                        android:fontFamily="@font/main_font"
                         android:hint="@string/password"
                         android:inputType="textPassword"
                         android:selectAllOnFocus="true"
-                        android:textColor="@color/black" />
+                        android:textColor="@color/black"
+                        android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/password_state"
@@ -173,7 +184,7 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/main_font"
                         android:gravity="center"
-                        android:text="주민등록번호" />
+                        android:text="@string/identify" />
 
                     <EditText
                         android:id="@+id/identify"
@@ -247,7 +258,8 @@
                     android:layout_gravity="center"
                     android:layout_margin="8dp"
                     android:fontFamily="@font/main_font"
-                    android:text="SingUp" />
+                    android:onClick="@{()->vm.checkSignUpValidation()}"
+                    android:text="@string/sign_up" />
 
             </LinearLayout>
         </ScrollView>

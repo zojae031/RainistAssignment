@@ -2,6 +2,7 @@ package rainist.assignment.ui
 
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.lifecycle.Observer
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import rainist.assignment.R
@@ -17,8 +18,9 @@ class MainDialog : BaseFragmentDialog<DialogMainBinding>() {
         super.onViewCreated(view, savedInstanceState)
         with(binding) {
             vm = viewModel.apply {
-                allPermission.observe(this@MainDialog, Observer {
-                    checkAllPermission(it)
+                permissionState.observe(this@MainDialog, Observer {
+                    if (it) dismiss()
+                    else Toast.makeText(requireContext(), "필수 약관에 동의해야 합니다.", Toast.LENGTH_SHORT).show()
                 })
             }
         }

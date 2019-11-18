@@ -5,6 +5,8 @@ import io.reactivex.exceptions.UndeliverableException
 import io.reactivex.plugins.RxJavaPlugins
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
+import rainist.assignment.di.dataSourceModule
+import rainist.assignment.di.repositoryModule
 import rainist.assignment.di.viewModelModule
 import timber.log.Timber
 import java.io.IOException
@@ -22,7 +24,7 @@ class BaseApplication : Application() {
     private fun initKoin() {
         startKoin {
             androidContext(this@BaseApplication)
-            modules(listOf(viewModelModule))
+            modules(listOf(viewModelModule, repositoryModule, dataSourceModule))
         }
     }
 

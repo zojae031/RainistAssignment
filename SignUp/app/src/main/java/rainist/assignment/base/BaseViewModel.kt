@@ -13,6 +13,10 @@ abstract class BaseViewModel : ViewModel() {
     val loadingState: LiveData<Boolean>
         get() = _loadingState
 
+    protected val _message = MutableLiveData<String>()
+    val message: LiveData<String>
+        get() = _message
+
     protected val _error = MutableLiveData<String>()
     val error: LiveData<String>
         get() = _error

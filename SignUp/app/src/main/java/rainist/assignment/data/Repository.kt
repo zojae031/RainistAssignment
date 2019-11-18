@@ -1,6 +1,9 @@
 package rainist.assignment.data
 
+import io.reactivex.Single
+import rainist.assignment.data.dao.UserEntity
+
 interface Repository {
-    fun requestSignUp()
-    fun saveUserEntity()
+    fun requestSignUp(entity: UserEntity): Single<String>
+    fun getUserInfo(): Single<UserEntity>
 }

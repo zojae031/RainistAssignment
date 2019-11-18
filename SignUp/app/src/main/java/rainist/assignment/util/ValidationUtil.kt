@@ -7,9 +7,12 @@ object ValidationUtil {
         )
 
 
-    fun checkPassword(pw1: String, pw2: String) = pw1 == pw2
+    fun checkPassword(pw1: String, pw2: String): Boolean {
+        return pw1.matches(Regex("^.*(?=^.{8,15}\$)(?=.*\\d)(?=.*[a-zA-Z])(?=.*[!@#\$%^&+=]).*\$")) && pw1 == pw2
+    }
+
     /**
-     * TODO
+     * TODO 마지막에 시간남으면 하기
      * 1. 특수문자, 영문자, 숫자 조합 -> 안정성 올라가기
      * 2. 동일숫자 3번 연속되면 막기 (ex : 111, 222...)
      * 3. 연속하는 숫자/글자 막기 (ex : abc, 123...)
