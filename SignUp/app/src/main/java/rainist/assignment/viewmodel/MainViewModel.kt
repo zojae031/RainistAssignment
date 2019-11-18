@@ -89,14 +89,14 @@ class MainViewModel(private val repository: Repository) : BaseViewModel() {
         repository.getUserInfo()
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe { data ->
+                var index = 0
                 emailText.value = data.email
                 passwordText.value = data.password
                 nameText.value = data.name
                 _identifyText.value = data.pId
-                permissionList[0].value = data.permission.get(0).asBoolean
-                permissionList[1].value = data.permission.get(1).asBoolean
-                permissionList[2].value = data.permission.get(2).asBoolean
-                permissionList[3].value = data.permission.get(3).asBoolean
+                permissionList.map {
+                    it.value = data.permission.get(index++).asBoolean
+                }
             }.also { compositeDisposable.add(it) }
     }
 
@@ -159,8 +159,10 @@ class MainViewModel(private val repository: Repository) : BaseViewModel() {
     }
 
     fun checkSignUpValidation() {
-        if (_emailState.value == true && _passwordState.value == true && _nameState.value == true && _identifyState.value == true && _permissionState.value == true) {
+        if (_emailState.value!! && _passwordState.value!! && _nameState.value!! && _identifyState.value!! && _permissionState.value!!) {
+
             _signUpState.value = true
+
             UserEntity(
                 tempIdData++,
                 emailText.value.toString(),
@@ -169,10 +171,9 @@ class MainViewModel(private val repository: Repository) : BaseViewModel() {
                 identifyText.value.toString(),
                 sex.value!!.ordinal,
                 JsonArray().apply {
-                    add(permissionList[0].value!!)
-                    add(permissionList[1].value!!)
-                    add(permissionList[2].value!!)
-                    add(permissionList[3].value!!)
+                    permissionList.map { isCheck ->
+                        add(isCheck.value!!)
+                    }
                 }
             ).run {
                 repository.requestSignUp(this)

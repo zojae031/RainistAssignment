@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
 
     <data>
 
@@ -44,8 +43,7 @@
             android:checked="@={vm.permissionList[2]}"
             android:fontFamily="@font/main_font"
             android:gravity="center"
-            android:text="@string/third_permission"
-            app:check="@{vm.permissionList[2]}" />
+            android:text="@string/third_permission" />
 
         <CheckBox
 
@@ -55,8 +53,7 @@
             android:checked="@={vm.permissionList[3]}"
             android:fontFamily="@font/main_font"
             android:gravity="center"
-            android:text="@string/marketing_permission"
-            app:check="@{vm.permissionList[3]}" />
+            android:text="@string/marketing_permission" />
 
         <Button
             android:id="@+id/submit"

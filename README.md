@@ -1,6 +1,4 @@
 # RainistAssignment
-Start : 2019-11-17 (11:17)
-
 
 
 ## MVP가 아닌 MVVM을 사용한 이유?
@@ -15,17 +13,13 @@ Start : 2019-11-17 (11:17)
 #### 여기서 문제점
  - View가 ViewModel을 알고있다.
  - 코드분리 에러
-
+# 1일차
+start : 2019-11-17 (11:17)
 end : 2019-11-17 (23:10)
 
-# TODO LIST (11-18)
+# 2일차
 start : 2019-11-18 (09:49)
-1. Permission Check해서 버튼 누르기 (o)
-2. password 별표 보이게 하기(o)
-3. password 정규식 작성하기(o)
-4. 회원가입버튼 작성하기(o)
-5. Model 설계하기
-6. App Logo 삽입하기(o)
+
 
 ## 어려웠던 점
 1. Two way binding이 익숙하지 않아서 헤멨다. 아직도 동작방식에 대해 제대로 이해하지 못한 것 같다.
