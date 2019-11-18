@@ -11,6 +11,7 @@ import rainist.assignment.viewmodel.MainViewModel
 
 class MainActivity : BaseActivity<ActivityMainBinding>() {
     private val viewModel by viewModel<MainViewModel>()
+    private val dialog = MainDialog()
 
     override val layoutId: Int
         get() = R.layout.activity_main
@@ -38,7 +39,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
     }
 
     fun showDialog() {
-        MainDialog().show(supportFragmentManager, "MainDialog")
+        dialog.show(supportFragmentManager, "MainDialog")
     }
 
     override fun onStop() {

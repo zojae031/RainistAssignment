@@ -5,6 +5,7 @@ import android.widget.CheckBox
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import rainist.assignment.util.ValidationUtil.IdentifyState
+import timber.log.Timber
 
 @BindingAdapter("setSex")
 fun TextView.setSex(sex: IdentifyState) {

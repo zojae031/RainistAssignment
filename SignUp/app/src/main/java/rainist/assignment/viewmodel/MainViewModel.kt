@@ -4,11 +4,12 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import rainist.assignment.base.BaseViewModel
 import rainist.assignment.data.dao.UserEntity
+import rainist.assignment.util.SingleLiveEvent
 import rainist.assignment.util.ValidationUtil
 import rainist.assignment.util.ValidationUtil.IdentifyState.*
+import timber.log.Timber
 
 class MainViewModel : BaseViewModel() {
-
     private val _user = MutableLiveData<UserEntity>()
     val user: LiveData<UserEntity>
         get() = _user
@@ -63,11 +64,16 @@ class MainViewModel : BaseViewModel() {
     val sex = MutableLiveData<ValidationUtil.IdentifyState>(ERROR)
 
     //permissionList
+    val permissionList = arrayOf(
+        MutableLiveData(false),
+        MutableLiveData(false),
+        MutableLiveData(false),
+        MutableLiveData(false)
+    )
 
-    val allPermission = MutableLiveData<Boolean>(false)
-    val permissionList =
-        arrayOf(MutableLiveData(false), MutableLiveData(false), MutableLiveData(false))
-
+    private val _permissionState = SingleLiveEvent<Boolean>()
+    val permissionState: LiveData<Boolean>
+        get() = _permissionState
 
     fun checkEmailValidation(email: String) {
         if (ValidationUtil.checkEmail(email)) {
@@ -120,9 +126,11 @@ class MainViewModel : BaseViewModel() {
     }
 
     fun checkAllPermission(check: Boolean) {
-        permissionList.map {
-            it.value = check
-        }
+        permissionList.map { it.value = check }.also { Timber.d("호출되나?$it") }
+    }
+
+    fun checkPermissionValidation() {
+        _permissionState.value = (permissionList[1].value!! && permissionList[2].value!!)
     }
 
     override fun clearDisposable() {

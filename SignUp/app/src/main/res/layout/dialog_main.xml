@@ -20,9 +20,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="4dp"
-            android:checked="@={vm.allPermission}"
+            android:checked="@={vm.permissionList[0]}"
             android:fontFamily="@font/main_font"
             android:gravity="center"
+            android:onClick="@{()->vm.checkAllPermission(vm.permissionList[0])}"
             android:text="@string/all_permission" />
 
         <CheckBox
@@ -30,30 +31,32 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="4dp"
+            android:checked="@={vm.permissionList[1]}"
             android:fontFamily="@font/main_font"
             android:gravity="center"
-            android:text="@string/usable_permission"
-            app:check="@{vm.permissionList[0]}" />
+            android:text="@string/usable_permission" />
 
         <CheckBox
             android:id="@+id/checkBox2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="4dp"
+            android:checked="@={vm.permissionList[2]}"
             android:fontFamily="@font/main_font"
             android:gravity="center"
             android:text="@string/third_permission"
-            app:check="@{vm.permissionList[1]}" />
+            app:check="@{vm.permissionList[2]}" />
 
         <CheckBox
 
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="4dp"
+            android:checked="@={vm.permissionList[3]}"
             android:fontFamily="@font/main_font"
             android:gravity="center"
             android:text="@string/marketing_permission"
-            app:check="@{vm.permissionList[2]}" />
+            app:check="@{vm.permissionList[3]}" />
 
         <Button
             android:id="@+id/submit"
@@ -62,6 +65,7 @@
             android:layout_gravity="center"
             android:layout_margin="8dp"
             android:gravity="center"
+            android:onClick="@{()->vm.checkPermissionValidation()}"
             android:text="@string/submit" />
     </LinearLayout>
 </layout>
