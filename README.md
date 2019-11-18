@@ -36,7 +36,7 @@
    # 2일차
    start : 2019-11-18 (09:49)
 
-   end : 2019-11-15 (20:12)
+   end : 2019-11-15 (22:25)
 
    ### Room과 JsonArray
 
@@ -103,7 +103,10 @@ password.addTextChangedListener {
 
 - password 관련 Invalidation이 너무 비효율적이다. //시간 남으면 수정하기
 
-
+- primary_key AutoIncrement 생성하기 ``checkSignUpValidation()``
+- Ui 이쁘게 꾸미기
+- 주민등록번호 Validation 고치기
+- TestCode 작성해보기
 
 <hr>
 
