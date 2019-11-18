@@ -4,5 +4,6 @@ import io.reactivex.Single
 import rainist.assignment.data.dao.UserEntity
 
 interface LocalDataSource {
-    fun saveUserInfo(userEntity: UserEntity): Single<String>
+    fun saveUserInfo(userEntity: UserEntity)
+    fun getUserInfo(): Single<UserEntity>
 }

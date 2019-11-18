@@ -2,6 +2,7 @@ package rainist.assignment.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.google.gson.JsonArray
 import io.reactivex.android.schedulers.AndroidSchedulers
 import rainist.assignment.base.BaseViewModel
 import rainist.assignment.data.Repository
@@ -28,6 +29,7 @@ class MainViewModel(private val repository: Repository) : BaseViewModel() {
 
     //Password
     val passwordText = MutableLiveData<String>("")
+
 
     private val _passwordState = MutableLiveData<Boolean>(false)
     val passwordState: LiveData<Boolean>
@@ -83,6 +85,21 @@ class MainViewModel(private val repository: Repository) : BaseViewModel() {
     val signUpState: LiveData<Boolean>
         get() = _signUpState
 
+    fun getUserData() {
+        repository.getUserInfo()
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe { data ->
+                emailText.value = data.email
+                passwordText.value = data.password
+                nameText.value = data.name
+                _identifyText.value = data.pId
+                permissionList[0].value = data.permission.get(0).asBoolean
+                permissionList[1].value = data.permission.get(1).asBoolean
+                permissionList[2].value = data.permission.get(2).asBoolean
+                permissionList[3].value = data.permission.get(3).asBoolean
+            }.also { compositeDisposable.add(it) }
+    }
+
     fun checkEmailValidation(email: String) {
         if (ValidationUtil.checkEmail(email)) {
             _emailStateText.value = EMAIL_SUCCESS
@@ -134,7 +151,7 @@ class MainViewModel(private val repository: Repository) : BaseViewModel() {
     }
 
     fun checkAllPermission(check: Boolean) {
-        permissionList.map { it.value = check }.also { Timber.d("호출되나?$it") }
+        permissionList.map { it.value = check }
     }
 
     fun checkPermissionValidation() {
@@ -151,12 +168,12 @@ class MainViewModel(private val repository: Repository) : BaseViewModel() {
                 nameText.value.toString(),
                 identifyText.value.toString(),
                 sex.value!!.ordinal,
-                arrayOf(
-                    permissionList[0].value!!,
-                    permissionList[1].value!!,
-                    permissionList[2].value!!,
-                    permissionList[3].value!!
-                )
+                JsonArray().apply {
+                    add(permissionList[0].value!!)
+                    add(permissionList[1].value!!)
+                    add(permissionList[2].value!!)
+                    add(permissionList[3].value!!)
+                }
             ).run {
                 repository.requestSignUp(this)
                     .observeOn(AndroidSchedulers.mainThread())
@@ -172,6 +189,7 @@ class MainViewModel(private val repository: Repository) : BaseViewModel() {
                                 is Http401Exception -> _error.value = "이미 가입된 회원입니다."
                                 is Http404Exception -> _error.value = "알 수 없는 오류입니다."
                             }
+                            Timber.e(error)
                         })
                     .also { compositeDisposable.add(it) }
             }

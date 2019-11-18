@@ -5,5 +5,5 @@ import rainist.assignment.data.dao.UserEntity
 
 interface Repository {
     fun requestSignUp(entity: UserEntity): Single<String>
-    fun saveUserEntity()
+    fun getUserInfo(): Single<UserEntity>
 }

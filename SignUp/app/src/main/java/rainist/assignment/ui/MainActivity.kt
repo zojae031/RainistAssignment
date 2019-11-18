@@ -22,6 +22,9 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
         super.onCreate(savedInstanceState)
         with(binding) {
             vm = viewModel.apply {
+
+                getUserData()
+
                 email_edit.addTextChangedListener {
                     checkEmailValidation(it.toString())
                 }
@@ -39,9 +42,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
                     identify.setSelection(identify.length())
                 }
                 signUpState.observe(this@MainActivity, Observer {
-                    if (it) {
-                        Toast.makeText(applicationContext, "앙 시작띠", Toast.LENGTH_SHORT).show()
-                    } else {
+                    if (!it) {
                         Toast.makeText(applicationContext, "회원 정보를 입력하세요.", Toast.LENGTH_SHORT)
                             .show()
                     }

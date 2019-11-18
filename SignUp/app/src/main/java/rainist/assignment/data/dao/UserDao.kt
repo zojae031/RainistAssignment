@@ -8,5 +8,5 @@ import rainist.assignment.base.BaseDao
 @Dao
 interface UserDao : BaseDao<UserEntity> {
     @Query("Select * from UserEntity")
-    fun select(): Single<String>
+    fun select(): Single<UserEntity>
 }
