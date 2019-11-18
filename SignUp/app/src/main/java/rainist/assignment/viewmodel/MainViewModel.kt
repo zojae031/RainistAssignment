@@ -9,6 +9,14 @@ import rainist.assignment.data.Repository
 import rainist.assignment.data.dao.UserEntity
 import rainist.assignment.data.datasource.remote.Http401Exception
 import rainist.assignment.data.datasource.remote.Http404Exception
+import rainist.assignment.util.ConstUtil.EMAIL_ERR
+import rainist.assignment.util.ConstUtil.EMAIL_SUCCESS
+import rainist.assignment.util.ConstUtil.IDENTIFY_ERR
+import rainist.assignment.util.ConstUtil.IDENTIFY_SUCCESS
+import rainist.assignment.util.ConstUtil.NAME_ERR
+import rainist.assignment.util.ConstUtil.NAME_SUCCESS
+import rainist.assignment.util.ConstUtil.PASSWORD_ERR
+import rainist.assignment.util.ConstUtil.PASSWORD_SUCCESS
 import rainist.assignment.util.SingleLiveEvent
 import rainist.assignment.util.ValidationUtil
 import rainist.assignment.util.ValidationUtil.IdentifyState.*
@@ -159,7 +167,7 @@ class MainViewModel(private val repository: Repository) : BaseViewModel() {
     }
 
     fun checkSignUpValidation() {
-        if (_emailState.value!! && _passwordState.value!! && _nameState.value!! && _identifyState.value!! && _permissionState.value!!) {
+        if (_emailState.value!! && _passwordState.value!! && _nameState.value!! && _identifyState.value!! && _permissionState.value == true) {
 
             _signUpState.value = true
 
@@ -202,22 +210,4 @@ class MainViewModel(private val repository: Repository) : BaseViewModel() {
         compositeDisposable.clear()
     }
 
-    companion object {
-        @JvmStatic
-        val EMAIL_ERR = "이메일이 올바르지 않습니다."
-        @JvmStatic
-        val EMAIL_SUCCESS = "올바른 이메일 입니다."
-        @JvmStatic
-        val PASSWORD_SUCCESS = "암호가 올바릅니다."
-        @JvmStatic
-        val PASSWORD_ERR = "암호가 올바르지 않습니다."
-        @JvmStatic
-        val NAME_SUCCESS = "올바른 이름 입니다."
-        @JvmStatic
-        val NAME_ERR = "이름은 10글자를 넘을 수 없습니다."
-        @JvmStatic
-        val IDENTIFY_SUCCESS = "올바른 주민번호입니다."
-        @JvmStatic
-        val IDENTIFY_ERR = "잘못된 주민번호입니다."
-    }
 }

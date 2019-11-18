@@ -1,6 +1,6 @@
 package rainist.assignment.util
 
-object StateUtil {
+object ConstUtil {
     const val EMAIL_ERR = "이메일이 올바르지 않습니다."
     const val EMAIL_SUCCESS = "올바른 이메일 입니다."
     const val PASSWORD_SUCCESS = "암호가 올바릅니다."
