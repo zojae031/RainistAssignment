@@ -143,8 +143,6 @@ class MainViewModel : BaseViewModel() {
     fun checkSignUpValidation() {
         _signUpState.value =
             _emailState.value == true && _passwordState.value == true && _nameState.value == true && _identifyState.value == true && _permissionState.value == true
-
-
     }
 
     override fun clearDisposable() {
