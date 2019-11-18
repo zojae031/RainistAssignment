@@ -87,3 +87,18 @@
        }
    }
    ```
+
+
+
+## 현재 문제점
+
+```kotlin
+password.addTextChangedListener {
+                    checkPasswordValidation(password.text.toString(), password2.text.toString())
+                }
+                password2.addTextChangedListener {
+                    checkPasswordValidation(password.text.toString(), password2.text.toString())
+                }
+```
+
+- password 관련 Invalidation이 너무 비효율적이다. //시간 남으면 수정하기
