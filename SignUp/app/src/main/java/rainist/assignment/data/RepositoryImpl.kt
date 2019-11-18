@@ -8,7 +8,8 @@ import rainist.assignment.data.datasource.remote.RemoteDataSource
 class RepositoryImpl(private val remote: RemoteDataSource, private val local: LocalDataSource) :
     Repository {
     override fun requestSignUp(entity: UserEntity): Single<String> {
-        return remote.requestSignUp(entity)
+        return Single.concat(remote.requestSignUp(entity), local.saveUserInfo(entity))
+            .firstOrError()
     }
 
     override fun saveUserEntity() {

@@ -1,5 +1,8 @@
 package rainist.assignment.data.datasource.local
 
-interface LocalDataSource {
+import io.reactivex.Single
+import rainist.assignment.data.dao.UserEntity
 
+interface LocalDataSource {
+    fun saveUserInfo(userEntity: UserEntity): Single<String>
 }
