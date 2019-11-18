@@ -11,6 +11,8 @@ import rainist.assignment.data.datasource.remote.Http401Exception
 import rainist.assignment.data.datasource.remote.Http404Exception
 import rainist.assignment.util.ConstUtil.EMAIL_ERR
 import rainist.assignment.util.ConstUtil.EMAIL_SUCCESS
+import rainist.assignment.util.ConstUtil.ERROR_401
+import rainist.assignment.util.ConstUtil.ERROR_404
 import rainist.assignment.util.ConstUtil.IDENTIFY_ERR
 import rainist.assignment.util.ConstUtil.IDENTIFY_SUCCESS
 import rainist.assignment.util.ConstUtil.NAME_ERR
@@ -195,8 +197,8 @@ class MainViewModel(private val repository: Repository) : BaseViewModel() {
                         },
                         { error ->
                             when (error) {
-                                is Http401Exception -> _error.value = "이미 가입된 회원입니다."
-                                is Http404Exception -> _error.value = "알 수 없는 오류입니다."
+                                is Http401Exception -> _error.value = ERROR_401
+                                is Http404Exception -> _error.value = ERROR_404
                             }
                             Timber.e(error)
                         })
