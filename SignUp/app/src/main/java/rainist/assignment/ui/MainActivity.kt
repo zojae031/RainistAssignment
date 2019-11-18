@@ -25,6 +25,9 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
                 email_edit.addTextChangedListener {
                     checkEmailValidation(it.toString())
                 }
+                password.addTextChangedListener {
+                    checkPasswordValidation(password.text.toString(), password2.text.toString())
+                }
                 password2.addTextChangedListener {
                     checkPasswordValidation(password.text.toString(), password2.text.toString())
                 }

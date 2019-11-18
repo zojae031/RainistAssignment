@@ -21,8 +21,8 @@ end : 2019-11-17 (23:10)
 # TODO LIST (11-18)
 start : 2019-11-18 (09:49)
 1. Permission Check해서 버튼 누르기 (o)
-2. password 별표 보이게 하기
-3. password 정규식 작성하기
+2. password 별표 보이게 하기(o)
+3. password 정규식 작성하기(o)
 4. 회원가입버튼 작성하기(o)
 5. Model 설계하기
 6. App Logo 삽입하기
