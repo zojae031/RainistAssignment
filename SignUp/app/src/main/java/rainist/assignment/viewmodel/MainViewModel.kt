@@ -3,13 +3,14 @@ package rainist.assignment.viewmodel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import rainist.assignment.base.BaseViewModel
+import rainist.assignment.data.Repository
 import rainist.assignment.data.dao.UserEntity
 import rainist.assignment.util.SingleLiveEvent
 import rainist.assignment.util.ValidationUtil
 import rainist.assignment.util.ValidationUtil.IdentifyState.*
 import timber.log.Timber
 
-class MainViewModel : BaseViewModel() {
+class MainViewModel(private val repository: Repository) : BaseViewModel() {
     private val _user = MutableLiveData<UserEntity>()
     val user: LiveData<UserEntity>
         get() = _user
@@ -141,8 +142,10 @@ class MainViewModel : BaseViewModel() {
     }
 
     fun checkSignUpValidation() {
-        _signUpState.value =
-            _emailState.value == true && _passwordState.value == true && _nameState.value == true && _identifyState.value == true && _permissionState.value == true
+        if (_emailState.value == true && _passwordState.value == true && _nameState.value == true && _identifyState.value == true && _permissionState.value == true) {
+            _signUpState.value = true
+            repository.requestSignUp()
+        } else _signUpState.value = false
     }
 
     override fun clearDisposable() {
