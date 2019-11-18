@@ -10,6 +10,6 @@ data class UserEntity(
     val password: String,
     val name: String,
     val pId: String,
-    val sex: Boolean,
-    val permission: Triple<Boolean, Boolean, Boolean>
+    val sex: Int,
+    val permission: Array<Boolean>
 )

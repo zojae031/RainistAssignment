@@ -46,6 +46,12 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
                             .show()
                     }
                 })
+                message.observe(this@MainActivity, Observer {
+                    Toast.makeText(applicationContext, it, Toast.LENGTH_SHORT).show()
+                })
+                error.observe(this@MainActivity, Observer {
+                    Toast.makeText(applicationContext, it, Toast.LENGTH_SHORT).show()
+                })
                 activity = this@MainActivity
             }
         }

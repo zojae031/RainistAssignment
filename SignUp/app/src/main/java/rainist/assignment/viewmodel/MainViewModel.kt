@@ -2,18 +2,18 @@ package rainist.assignment.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import io.reactivex.android.schedulers.AndroidSchedulers
 import rainist.assignment.base.BaseViewModel
 import rainist.assignment.data.Repository
 import rainist.assignment.data.dao.UserEntity
+import rainist.assignment.data.datasource.remote.Http401Exception
+import rainist.assignment.data.datasource.remote.Http404Exception
 import rainist.assignment.util.SingleLiveEvent
 import rainist.assignment.util.ValidationUtil
 import rainist.assignment.util.ValidationUtil.IdentifyState.*
 import timber.log.Timber
 
 class MainViewModel(private val repository: Repository) : BaseViewModel() {
-    private val _user = MutableLiveData<UserEntity>()
-    val user: LiveData<UserEntity>
-        get() = _user
 
     //Email
     val emailText = MutableLiveData<String>("")
@@ -144,7 +144,38 @@ class MainViewModel(private val repository: Repository) : BaseViewModel() {
     fun checkSignUpValidation() {
         if (_emailState.value == true && _passwordState.value == true && _nameState.value == true && _identifyState.value == true && _permissionState.value == true) {
             _signUpState.value = true
-            repository.requestSignUp()
+            UserEntity(
+                "1",
+                emailText.value.toString(),
+                passwordText.value.toString(),
+                nameText.value.toString(),
+                identifyText.value.toString(),
+                sex.value!!.ordinal,
+                arrayOf(
+                    permissionList[0].value!!,
+                    permissionList[1].value!!,
+                    permissionList[2].value!!,
+                    permissionList[3].value!!
+                )
+            ).run {
+                repository.requestSignUp(this)
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .doOnSubscribe { _loadingState.value = true }
+                    .doOnSuccess { _loadingState.value = false }
+                    .doOnError { _loadingState.value = false }
+                    .subscribe(
+                        { data ->
+                            _message.value = data
+                        },
+                        { error ->
+                            when (error) {
+                                is Http401Exception -> _error.value = "이미 가입된 회원입니다."
+                                is Http404Exception -> _error.value = "알 수 없는 오류입니다."
+                            }
+                        })
+                    .also { compositeDisposable.add(it) }
+            }
+
         } else _signUpState.value = false
     }
 
