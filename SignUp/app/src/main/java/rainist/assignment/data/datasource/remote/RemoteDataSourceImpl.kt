@@ -9,8 +9,8 @@ class RemoteDataSourceImpl : RemoteDataSource {
     override fun requestSignUp(entity: UserEntity): Single<String> {
         return Single.create(SingleOnSubscribe<String> {
             when {
-                entity.id == 1 -> it.onError(throw Http401Exception())
-                entity.id == 2 -> it.onError(throw Http404Exception())
+                entity.email == "edgar3@naver.com" -> it.onError(throw Http401Exception())
+                entity.email == "recruit@rainist.com" -> it.onError(throw Http404Exception())
                 else -> it.onSuccess(entity.toString())
             }
         }).subscribeOn(Schedulers.io())

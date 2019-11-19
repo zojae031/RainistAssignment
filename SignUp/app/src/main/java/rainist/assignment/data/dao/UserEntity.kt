@@ -13,7 +13,7 @@ import rainist.assignment.util.DataConverterUtil
 @Parcelize
 @TypeConverters(DataConverterUtil::class)
 data class UserEntity(
-    @PrimaryKey val id: Int,
+    @PrimaryKey(autoGenerate = true) val id: Int = 0,
     val email: String,
     val password: String,
     val name: String,

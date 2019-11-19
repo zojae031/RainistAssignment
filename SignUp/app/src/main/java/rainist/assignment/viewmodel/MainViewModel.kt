@@ -9,6 +9,7 @@ import rainist.assignment.data.Repository
 import rainist.assignment.data.dao.UserEntity
 import rainist.assignment.data.datasource.remote.Http401Exception
 import rainist.assignment.data.datasource.remote.Http404Exception
+import rainist.assignment.util.ConstUtil.AUTO_INCREMENT_DATA
 import rainist.assignment.util.ConstUtil.EMAIL_ERR
 import rainist.assignment.util.ConstUtil.EMAIL_SUCCESS
 import rainist.assignment.util.ConstUtil.ERROR_401
@@ -25,7 +26,6 @@ import rainist.assignment.util.ValidationUtil.IdentifyState.*
 import timber.log.Timber
 
 class MainViewModel(private val repository: Repository) : BaseViewModel() {
-    private var tempIdData = 0
     //Email
     val emailText = MutableLiveData<String>("")
 
@@ -182,7 +182,7 @@ class MainViewModel(private val repository: Repository) : BaseViewModel() {
             _permissionColorState.value = (permissionList[1].value!! && permissionList[2].value!!)
 
             UserEntity(
-                tempIdData++,
+                AUTO_INCREMENT_DATA,
                 emailText.value.toString(),
                 passwordText.value.toString(),
                 nameText.value.toString(),

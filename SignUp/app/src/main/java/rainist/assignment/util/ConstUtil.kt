@@ -11,5 +11,7 @@ object ConstUtil {
     const val IDENTIFY_ERR = "잘못된 주민번호입니다."
     const val ERROR_404 = "알 수 없는 오류입니다."
     const val ERROR_401 = "이미 가입된 회원입니다."
+
+    const val AUTO_INCREMENT_DATA = 0
 }
 
