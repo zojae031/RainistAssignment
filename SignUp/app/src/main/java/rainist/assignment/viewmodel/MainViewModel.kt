@@ -3,7 +3,9 @@ package rainist.assignment.viewmodel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.google.gson.JsonArray
+import io.reactivex.BackpressureStrategy
 import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.subjects.BehaviorSubject
 import rainist.assignment.base.BaseViewModel
 import rainist.assignment.data.Repository
 import rainist.assignment.data.dao.UserEntity
@@ -98,6 +100,31 @@ class MainViewModel(private val repository: Repository) : BaseViewModel() {
     private val _signUpState = MutableLiveData(false)
     val signUpState: LiveData<Boolean>
         get() = _signUpState
+
+    //Ext
+    private val _finishState = MutableLiveData<Boolean>()
+    val finishState: LiveData<Boolean>
+        get() = _finishState
+
+    private val backPressSubject =
+        BehaviorSubject.createDefault(0L)
+
+    init {
+        backPressSubject
+            .toFlowable(BackpressureStrategy.BUFFER)
+            .observeOn(AndroidSchedulers.mainThread())
+            .buffer(2, 1)
+            .map { it[0] to it[1] }
+            .subscribe(
+                {
+                    _finishState.value = it.second - it.first < TOAST_DURATION
+                },
+                {
+                    _error.value = it.message
+                }
+            ).also { compositeDisposable.add(it) }
+    }
+
 
     fun getUserData() {
         repository.getUserInfo()
@@ -216,8 +243,15 @@ class MainViewModel(private val repository: Repository) : BaseViewModel() {
         } else _signUpState.value = false
     }
 
+    fun onBackPressed() {
+        backPressSubject.onNext(System.currentTimeMillis())
+    }
+
     override fun clearDisposable() {
         compositeDisposable.clear()
     }
 
+    companion object {
+        const val TOAST_DURATION = 1000L
+    }
 }

@@ -51,8 +51,16 @@ class MainActivity : BaseActivity<ActivityMainBinding>(), View.OnClickListener {
                 error.observe(this@MainActivity, Observer {
                     toast(it)
                 })
+                finishState.observe(this@MainActivity, Observer {
+                    if (it) finish()
+                    else toast("한번 더 누르면 종료됩니다.")
+                })
             }
         }
+    }
+
+    override fun onBackPressed() {
+        viewModel.onBackPressed()
     }
 
     override fun onClick(v: View?) {

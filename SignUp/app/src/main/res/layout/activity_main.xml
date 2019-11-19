@@ -223,7 +223,6 @@
                         android:ems="6"
                         android:fontFamily="@font/main_font"
                         android:inputType="numberSigned"
-                        android:padding="4dp"
                         android:text="@{vm.identifyText}"
                         android:textAlignment="center" />
 
