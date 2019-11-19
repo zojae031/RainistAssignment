@@ -1,7 +1,10 @@
 package rainist.assignment.ui
 
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.View
+import android.view.Window
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
@@ -16,6 +19,12 @@ class MainDialog : BaseFragmentDialog<DialogMainBinding>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        dialog?.window?.run {
+            setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+            requestFeature(Window.FEATURE_NO_TITLE)
+        }
+
+
         with(binding) {
             vm = viewModel.apply {
                 permissionState.observe(this@MainDialog, Observer {

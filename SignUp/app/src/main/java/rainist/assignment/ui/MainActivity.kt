@@ -39,7 +39,6 @@ class MainActivity : BaseActivity<ActivityMainBinding>(), View.OnClickListener {
                 }
                 identify.addTextChangedListener {
                     checkIdentifyValidation(it.toString())
-                    identify.setSelection(identify.length())
                 }
                 signUpState.observe(this@MainActivity, Observer {
                     if (!it) {

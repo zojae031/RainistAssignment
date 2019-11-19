@@ -11,7 +11,9 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:background="@drawable/rounded_background"
+        android:orientation="vertical"
+        android:padding="32dp">
 
         <CheckBox
 
@@ -22,6 +24,7 @@
             android:checked="@={vm.permissionList[0]}"
             android:fontFamily="@font/main_font"
             android:gravity="center"
+            android:lines="2"
             android:onClick="@{()->vm.checkAllPermission(vm.permissionList[0])}"
             android:text="@string/all_permission" />
 
@@ -33,6 +36,7 @@
             android:checked="@={vm.permissionList[1]}"
             android:fontFamily="@font/main_font"
             android:gravity="center"
+            android:lines="2"
             android:text="@string/usable_permission" />
 
         <CheckBox
@@ -43,6 +47,7 @@
             android:checked="@={vm.permissionList[2]}"
             android:fontFamily="@font/main_font"
             android:gravity="center"
+            android:lines="2"
             android:text="@string/third_permission" />
 
         <CheckBox
@@ -53,14 +58,15 @@
             android:checked="@={vm.permissionList[3]}"
             android:fontFamily="@font/main_font"
             android:gravity="center"
+            android:lines="2"
             android:text="@string/marketing_permission" />
 
         <Button
             android:id="@+id/submit"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_margin="8dp"
+            android:layout_marginTop="32dp"
             android:gravity="center"
             android:onClick="@{()->vm.checkPermissionValidation()}"
             android:text="@string/submit" />
