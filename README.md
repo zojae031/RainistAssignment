@@ -105,13 +105,12 @@ password.addTextChangedListener {
 
 - primary_key AutoIncrement 생성하기 ``checkSignUpValidation()``
 - Ui 이쁘게 꾸미기
-- 주민등록번호 Validation 고치기
 - TestCode 작성해보기
 
 <hr>
 
 # 3일차
-start : 2019-11-19 (xx:xx)
+start : 2019-11-19 (14:03)
 end : 2019-11-19 (xx:xx)
 
 
