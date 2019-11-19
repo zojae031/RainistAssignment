@@ -12,7 +12,7 @@
       - Dialog,Activity : ViewModel
       - 관련 데이터를 관리하기 더 쉽다.
       - 보일러 플레이트 코드가 발생하지 않는다.
-      - Presenter가 View를 몰라도 된다.
+      - ViewModel이 View를 몰라도 된다.
    3. DataBinding에 관련하여 강력하다.
 
    ### View로 Binding하기
@@ -93,7 +93,7 @@
 
 # 3일차 (Ui)
 start : 2019-11-19 (14:03)
-end : 2019-11-19 (xx:xx)
+end : 2019-11-19 (22:37)
 
 ### Test Code
 
@@ -121,7 +121,9 @@ end : 2019-11-19 (xx:xx)
 
 ### UI 변경
 
-![1574158037267](C:\Users\USER\AppData\Roaming\Typora\typora-user-images\1574158037267.png)
+![1574165887710](C:\Users\USER\AppData\Roaming\Typora\typora-user-images\1574165887710.png)
+
+
 
 
 
