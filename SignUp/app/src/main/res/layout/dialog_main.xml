@@ -67,8 +67,11 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="32dp"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/base_btn_background"
             android:gravity="center"
             android:onClick="@{()->vm.checkPermissionValidation()}"
-            android:text="@string/submit" />
+            android:text="@string/submit"
+            android:textColor="@color/white" />
     </LinearLayout>
 </layout>
