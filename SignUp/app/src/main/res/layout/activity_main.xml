@@ -61,6 +61,7 @@
                     android:id="@+id/email_wrapper"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:layout_margin="8dp"
                     android:orientation="vertical">
 
                     <EditText
@@ -72,8 +73,8 @@
                         android:ems="10"
                         android:fontFamily="@font/main_font"
                         android:hint="@string/e_mail"
+                        android:includeFontPadding="false"
                         android:inputType="textWebEmailAddress"
-                        android:padding="4dp"
                         android:text="@={vm.emailText}" />
 
                     <TextView
@@ -94,6 +95,7 @@
                     android:id="@+id/password_wrapper"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:layout_margin="8dp"
                     android:orientation="vertical">
 
                     <EditText
@@ -105,7 +107,6 @@
                         android:ems="10"
                         android:hint="@string/password"
                         android:inputType="textPassword"
-                        android:padding="4dp"
                         android:selectAllOnFocus="true"
                         android:text="@={vm.passwordText}"
                         android:textColor="@color/black"
@@ -120,7 +121,6 @@
                         android:ems="10"
                         android:hint="@string/password"
                         android:inputType="textPassword"
-                        android:padding="4dp"
                         android:selectAllOnFocus="true"
                         android:textColor="@color/black"
                         android:textStyle="bold" />
@@ -143,6 +143,7 @@
                     android:id="@+id/name_wrapper"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:layout_margin="8dp"
                     android:orientation="vertical">
 
                     <EditText
@@ -154,7 +155,6 @@
                         android:fontFamily="@font/main_font"
                         android:hint="@string/name"
                         android:inputType="textPersonName"
-                        android:padding="4dp"
                         android:text="@={vm.nameText}" />
 
                     <TextView
@@ -175,7 +175,7 @@
                     android:id="@+id/identify_wrapper"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_margin="16dp"
+                    android:layout_margin="8dp"
                     android:orientation="vertical"
                     android:padding="16dp">
 
