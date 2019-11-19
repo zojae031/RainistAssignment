@@ -7,25 +7,8 @@ object ValidationUtil {
             Regex("^([\\w-]+(?:\\.[\\w-]+)*)@((?:[\\w-]+\\.)*\\w[\\w-]{0,66})\\.([a-z]{2,6}(?:\\.[a-z]{2})?)\$")
         )
 
-    /** @param pw1
-     * this is first password
-     * @param pw2
-     * this is second password
-     * @return check password state & password state equality
-     * 
-     * ^                 # start-of-string
-     * (?=.*[0-9])       # a digit must occur at least once
-     * (?=.*[a-z])       # a lower case letter must occur at least once
-     * (?=.*[A-Z])       # an upper case letter must occur at least once
-     * (?=.*[@#$%^&+=])  # a special character must occur at least once
-     * (?=\S+$)          # no whitespace allowed in the entire string
-     * .{8,}             # anything, at least eight places though
-     * $                 # end-of-string
-     *
-     * @Link https://stackoverflow.com/questions/3802192/regexp-java-for-password-validation
-     */
     fun checkPassword(pw1: String, pw2: String): Boolean {
-        return pw1.matches(Regex("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#\$%^&+=])(?=\\S+\$).{8,}\$")) && pw1 == pw2
+        return pw1.matches(Regex(return pw1.matches(Regex("^.*(?=^.{8,15}\$)(?=.*\\d)(?=.*[a-zA-Z])(?=.*[!@#\$%^&+=]).*\$")) && pw1 == pw2)) && pw1 == pw2
     }
 
     fun checkName(name: String) = name.length < 10
