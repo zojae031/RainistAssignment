@@ -67,8 +67,8 @@ class MainActivity : BaseActivity<ActivityMainBinding>(), View.OnClickListener {
         dialog.show(supportFragmentManager, "MainDialog")
     }
 
-    override fun onStop() {
+    override fun onDestroy() {
         viewModel.clearDisposable()
-        super.onStop()
+        super.onDestroy()
     }
 }
