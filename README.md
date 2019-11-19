@@ -2,12 +2,12 @@
 
 
    # 1일차 (기본Ui, Validation, Architecture)
-   start : 2019-11-17 (11:17)
+   start : 2019-11-17 (11:17)  
    end : 2019-11-17 (23:10)
 
    ### MVP가 아닌 MVVM을 사용한 이유?
 
-      1. View와 Presenter가 강하게 묶여있어 서로 계속하여 호출하는 형태가 불편하다.
+   1. View와 Presenter가 강하게 묶여있어 서로 계속하여 호출하는 형태가 불편하다.
    2. 1:1관계를 깨고 1:n관계를 가지고자 MVVM을 사용했다.
       - Dialog,Activity : ViewModel
       - 관련 데이터를 관리하기 더 쉽다.
@@ -92,8 +92,8 @@
 <hr>
 
 # 3일차 (Ui)
-start : 2019-11-19 (14:03)
-end : 2019-11-19 (22:37)
+start : 2019-11-19 (14:03)  
+end : 2019-11-19 (22:44)
 
 ### Test Code
 
@@ -121,7 +121,7 @@ end : 2019-11-19 (22:37)
 
 ### UI 변경
 
-![1574165887710](C:\Users\USER\AppData\Roaming\Typora\typora-user-images\1574165887710.png)
+![1574165887710](https://github.com/zojae031/RainistAssignment/blob/master/image.png?raw=true)
 
 
 
