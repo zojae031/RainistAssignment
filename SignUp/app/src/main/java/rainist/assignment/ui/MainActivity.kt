@@ -1,6 +1,7 @@
 package rainist.assignment.ui
 
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.Observer
@@ -11,7 +12,7 @@ import rainist.assignment.base.BaseActivity
 import rainist.assignment.databinding.ActivityMainBinding
 import rainist.assignment.viewmodel.MainViewModel
 
-class MainActivity : BaseActivity<ActivityMainBinding>() {
+class MainActivity : BaseActivity<ActivityMainBinding>(), View.OnClickListener {
     private val viewModel by viewModel<MainViewModel>()
     private val dialog = MainDialog()
 
@@ -53,12 +54,11 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
                 error.observe(this@MainActivity, Observer {
                     Toast.makeText(applicationContext, it, Toast.LENGTH_SHORT).show()
                 })
-                activity = this@MainActivity
             }
         }
     }
 
-    fun showDialog() {
+    override fun onClick(v: View?) {
         dialog.show(supportFragmentManager, "MainDialog")
     }
 

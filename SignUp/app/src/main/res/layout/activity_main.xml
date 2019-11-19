@@ -10,10 +10,6 @@
         <import type="rainist.assignment.util.ValidationUtil.IdentifyState" />
 
         <variable
-            name="activity"
-            type="rainist.assignment.ui.MainActivity" />
-
-        <variable
             name="vm"
             type="rainist.assignment.viewmodel.MainViewModel" />
     </data>
@@ -255,7 +251,7 @@
                     android:layout_gravity="center"
                     android:layout_margin="8dp"
                     android:fontFamily="@font/main_font"
-                    android:onClick="@{()->activity.showDialog()}"
+                    android:onClick="onClick"
                     android:text="@string/permission"
                     android:textColor="@{vm.permissionColorState ? @color/black : @color/gray}" />
 
