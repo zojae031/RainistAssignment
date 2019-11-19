@@ -221,26 +221,30 @@ class MainViewModel(private val repository: Repository) : BaseViewModel() {
                     }
                 }
             ).run {
-                repository.requestSignUp(this)
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .doOnSubscribe { _loadingState.value = true }
-                    .doOnSuccess { _loadingState.value = false }
-                    .doOnError { _loadingState.value = false }
-                    .subscribe(
-                        { data ->
-                            _message.value = data
-                        },
-                        { error ->
-                            when (error) {
-                                is Http401Exception -> _error.value = ERROR_401
-                                is Http404Exception -> _error.value = ERROR_404
-                            }
-                            Timber.e(error)
-                        })
-                    .also { compositeDisposable.add(it) }
+                requestSignUp(this)
             }
 
         } else _signUpState.value = false
+    }
+
+    private fun requestSignUp(entity: UserEntity) {
+        repository.requestSignUp(entity)
+            .observeOn(AndroidSchedulers.mainThread())
+            .doOnSubscribe { _loadingState.value = true }
+            .doOnSuccess { _loadingState.value = false }
+            .doOnError { _loadingState.value = false }
+            .subscribe(
+                { data ->
+                    _message.value = data
+                },
+                { error ->
+                    when (error) {
+                        is Http401Exception -> _error.value = ERROR_401
+                        is Http404Exception -> _error.value = ERROR_404
+                    }
+                    Timber.e(error)
+                })
+            .also { compositeDisposable.add(it) }
     }
 
     fun onBackPressed() {

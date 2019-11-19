@@ -1,19 +1,18 @@
-1. # RainistAssignment
+# RainistAssignment
 
 
-   # 1일차
+   # 1일차 (기본Ui, Validation, Architecture)
    start : 2019-11-17 (11:17)
    end : 2019-11-17 (23:10)
 
    ### MVP가 아닌 MVVM을 사용한 이유?
 
-   1. View와 Presenter가 강하게 묶여있어 서로 계속하여 호출하는 형태가 불편하다.
-
+      1. View와 Presenter가 강하게 묶여있어 서로 계속하여 호출하는 형태가 불편하다.
    2. 1:1관계를 깨고 1:n관계를 가지고자 MVVM을 사용했다.
       - Dialog,Activity : ViewModel
       - 관련 데이터를 관리하기 더 쉽다.
       - 보일러 플레이트 코드가 발생하지 않는다.
-      
+      - Presenter가 View를 몰라도 된다.
    3. DataBinding에 관련하여 강력하다.
 
    ### View로 Binding하기
@@ -33,7 +32,7 @@
    ```
 
 
-   # 2일차
+   # 2일차 (Repository)
    start : 2019-11-18 (09:49)
 
    end : 2019-11-15 (22:25)
@@ -90,28 +89,39 @@
 
 
 
-## 현재 문제점
-
-```kotlin
-password.addTextChangedListener {
-                    checkPasswordValidation(password.text.toString(), password2.text.toString())
-                }
-                password2.addTextChangedListener {
-                    checkPasswordValidation(password.text.toString(), password2.text.toString())
-                }
-```
-
-- password 관련 Invalidation이 너무 비효율적이다. //시간 남으면 수정하기
-
-- primary_key AutoIncrement 생성하기 ``checkSignUpValidation()``
-- Ui 이쁘게 꾸미기
-- TestCode 작성해보기
-
 <hr>
 
-# 3일차
+# 3일차 (Ui)
 start : 2019-11-19 (14:03)
 end : 2019-11-19 (xx:xx)
+
+### Test Code
+
+- 처음 작성하다 실패함
+
+```kotlin
+	@Test
+    fun getData() {
+        RemoteDataSourceImpl().requestSignUp(entity2)
+            .subscribe(
+                { data ->
+                    assert(data.equals(entity))
+                },
+                { error ->
+                    when (error) {
+                        is Http404Exception -> assert(ConstUtil.ERROR_404 == error.toString())
+                        is Http401Exception -> assert(ConstUtil.ERROR_401 == error.toString())
+                    }
+                }
+            )
+    }
+```
+
+
+
+### UI 변경
+
+![1574158037267](C:\Users\USER\AppData\Roaming\Typora\typora-user-images\1574158037267.png)
 
 
 
@@ -148,9 +158,7 @@ end : 2019-11-19 (xx:xx)
 
 
 
-#### D - 주민등록번호 :최대한 틀린 주민등록번호를 막을 수 있는 방법 validation 체크해주세요.
-
-``TODO 앞자리 0으로 시작 체크, 하이푼 - 자동 붙이기``
+#### D - 주민등록번호 :최대한 틀린 주민등록번호를 막을 수 있는 방법 validation 체크해주세요. ``OK``
 
 
 
