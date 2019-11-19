@@ -7,17 +7,27 @@ object ValidationUtil {
             Regex("^([\\w-]+(?:\\.[\\w-]+)*)@((?:[\\w-]+\\.)*\\w[\\w-]{0,66})\\.([a-z]{2,6}(?:\\.[a-z]{2})?)\$")
         )
 
-
+    /** @param pw1
+     * this is first password
+     * @param pw2
+     * this is second password
+     * @return check password state & password state equality
+     * 
+     * ^                 # start-of-string
+     * (?=.*[0-9])       # a digit must occur at least once
+     * (?=.*[a-z])       # a lower case letter must occur at least once
+     * (?=.*[A-Z])       # an upper case letter must occur at least once
+     * (?=.*[@#$%^&+=])  # a special character must occur at least once
+     * (?=\S+$)          # no whitespace allowed in the entire string
+     * .{8,}             # anything, at least eight places though
+     * $                 # end-of-string
+     *
+     * @Link https://stackoverflow.com/questions/3802192/regexp-java-for-password-validation
+     */
     fun checkPassword(pw1: String, pw2: String): Boolean {
-        return pw1.matches(Regex("^.*(?=^.{8,15}\$)(?=.*\\d)(?=.*[a-zA-Z])(?=.*[!@#\$%^&+=]).*\$")) && pw1 == pw2
+        return pw1.matches(Regex("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#\$%^&+=])(?=\\S+\$).{8,}\$")) && pw1 == pw2
     }
 
-    /**
-     * TODO 마지막에 시간남으면 하기
-     * 1. 특수문자, 영문자, 숫자 조합 -> 안정성 올라가기
-     * 2. 동일숫자 3번 연속되면 막기 (ex : 111, 222...)
-     * 3. 연속하는 숫자/글자 막기 (ex : abc, 123...)
-     */
     fun checkName(name: String) = name.length < 10
 
     fun checkIdentify(id: String): Boolean =
