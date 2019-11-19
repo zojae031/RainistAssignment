@@ -154,13 +154,15 @@ class MainViewModel(private val repository: Repository) : BaseViewModel() {
             _identifyState.value = false
             _identifyStateText.value = IDENTIFY_ERR
         }
-        when (ValidationUtil.checkIdentifySex(identify.substringAfterLast('-'))) {
-            MALE -> _sex.value =
-                MALE
-            FEMALE -> _sex.value =
-                FEMALE
-            ERROR -> _sex.value =
-                ERROR
+        if (identify.split('-').size > 1) {
+            when (ValidationUtil.checkIdentifySex(identify.substringAfterLast('-'))) {
+                MALE -> _sex.value =
+                    MALE
+                FEMALE -> _sex.value =
+                    FEMALE
+                ERROR -> _sex.value =
+                    ERROR
+            }
         }
     }
 

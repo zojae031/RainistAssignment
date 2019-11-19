@@ -1,6 +1,7 @@
 package rainist.assignment.util
 
 object ValidationUtil {
+
     fun checkEmail(email: String): Boolean =
         email.matches(
             Regex("^([\\w-]+(?:\\.[\\w-]+)*)@((?:[\\w-]+\\.)*\\w[\\w-]{0,66})\\.([a-z]{2,6}(?:\\.[a-z]{2})?)\$")
