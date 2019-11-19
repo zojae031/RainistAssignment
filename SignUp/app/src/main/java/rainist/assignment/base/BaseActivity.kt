@@ -1,6 +1,7 @@
 package rainist.assignment.base
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
@@ -14,5 +15,9 @@ abstract class BaseActivity<VIEW_DATA_BINDING : ViewDataBinding> :
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, layoutId)
         binding.lifecycleOwner = this
+    }
+
+    protected fun toast(text: String) {
+        Toast.makeText(applicationContext, text, Toast.LENGTH_SHORT).show()
     }
 }
