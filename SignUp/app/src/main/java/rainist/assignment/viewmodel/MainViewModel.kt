@@ -6,28 +6,20 @@ import com.google.gson.JsonArray
 import io.reactivex.BackpressureStrategy
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.subjects.BehaviorSubject
+import rainist.assignment.R
 import rainist.assignment.base.BaseViewModel
 import rainist.assignment.data.Repository
 import rainist.assignment.data.dao.UserEntity
 import rainist.assignment.data.datasource.remote.Http401Exception
 import rainist.assignment.data.datasource.remote.Http404Exception
-import rainist.assignment.util.ConstUtil.AUTO_INCREMENT_DATA
-import rainist.assignment.util.ConstUtil.EMAIL_ERR
-import rainist.assignment.util.ConstUtil.EMAIL_SUCCESS
-import rainist.assignment.util.ConstUtil.ERROR_401
-import rainist.assignment.util.ConstUtil.ERROR_404
-import rainist.assignment.util.ConstUtil.IDENTIFY_ERR
-import rainist.assignment.util.ConstUtil.IDENTIFY_SUCCESS
-import rainist.assignment.util.ConstUtil.NAME_ERR
-import rainist.assignment.util.ConstUtil.NAME_SUCCESS
-import rainist.assignment.util.ConstUtil.PASSWORD_ERR
-import rainist.assignment.util.ConstUtil.PASSWORD_SUCCESS
+import rainist.assignment.util.ResourceUtil
 import rainist.assignment.util.SingleLiveEvent
 import rainist.assignment.util.ValidationUtil
 import rainist.assignment.util.ValidationUtil.IdentifyState.*
 import timber.log.Timber
 
-class MainViewModel(private val repository: Repository) : BaseViewModel() {
+class MainViewModel(private val repository: Repository, private val resourceUtil: ResourceUtil) :
+    BaseViewModel() {
     //Email
     val emailText = MutableLiveData<String>("")
 
@@ -144,10 +136,10 @@ class MainViewModel(private val repository: Repository) : BaseViewModel() {
     fun checkEmailValidation(email: String) {
         if (ValidationUtil.checkEmail(email)) {
             _emailState.value = true
-            _emailStateText.value = EMAIL_SUCCESS
+            _emailStateText.value = resourceUtil.getResource(R.string.email_success)
         } else {
             _emailState.value = false
-            _emailStateText.value = EMAIL_ERR
+            _emailStateText.value = resourceUtil.getResource(R.string.email_err)
         }
     }
 
@@ -155,20 +147,20 @@ class MainViewModel(private val repository: Repository) : BaseViewModel() {
         if (pw1.isEmpty() && pw2.isEmpty()) _passwordState.value = false
         if (ValidationUtil.checkPassword(pw1, pw2)) {
             _passwordState.value = true
-            _passwordStateText.value = PASSWORD_SUCCESS
+            _passwordStateText.value = resourceUtil.getResource(R.string.pw_success)
         } else {
             _passwordState.value = false
-            _passwordStateText.value = PASSWORD_ERR
+            _passwordStateText.value = resourceUtil.getResource(R.string.pw_err)
         }
     }
 
     fun checkNameValidation(name: String) {
         if (ValidationUtil.checkName(name)) {
             _nameState.value = true
-            _nameStateText.value = NAME_SUCCESS
+            _nameStateText.value = resourceUtil.getResource(R.string.name_success)
         } else {
             _nameState.value = false
-            _nameStateText.value = NAME_ERR
+            _nameStateText.value = resourceUtil.getResource(R.string.name_err)
         }
     }
 
@@ -176,10 +168,10 @@ class MainViewModel(private val repository: Repository) : BaseViewModel() {
         _identifyText.value = identify
         if (ValidationUtil.checkIdentify(identify)) {
             _identifyState.value = true
-            _identifyStateText.value = IDENTIFY_SUCCESS
+            _identifyStateText.value = resourceUtil.getResource(R.string.id_success)
         } else {
             _identifyState.value = false
-            _identifyStateText.value = IDENTIFY_ERR
+            _identifyStateText.value = resourceUtil.getResource(R.string.id_err)
         }
         if (identify.split('-').size > 1) {
             when (ValidationUtil.checkIdentifySex(identify.substringAfterLast('-'))) {
@@ -239,8 +231,10 @@ class MainViewModel(private val repository: Repository) : BaseViewModel() {
                 },
                 { error ->
                     when (error) {
-                        is Http401Exception -> _error.value = ERROR_401
-                        is Http404Exception -> _error.value = ERROR_404
+                        is Http401Exception -> _error.value =
+                            resourceUtil.getResource(R.string.error_401)
+                        is Http404Exception -> _error.value =
+                            resourceUtil.getResource(R.string.error_404)
                     }
                     Timber.e(error)
                 })
@@ -257,5 +251,6 @@ class MainViewModel(private val repository: Repository) : BaseViewModel() {
 
     companion object {
         const val TOAST_DURATION = 1000L
+        const val AUTO_INCREMENT_DATA = 0
     }
 }

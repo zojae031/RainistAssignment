@@ -7,6 +7,7 @@ import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 import rainist.assignment.di.dataSourceModule
 import rainist.assignment.di.repositoryModule
+import rainist.assignment.di.resourceModule
 import rainist.assignment.di.viewModelModule
 import timber.log.Timber
 import java.io.IOException
@@ -16,15 +17,17 @@ import java.net.SocketException
 class BaseApplication : Application() {
     override fun onCreate() {
         super.onCreate()
+
         initKoin()
         settingRxPlugIn()
         initTimber()
     }
 
+
     private fun initKoin() {
         startKoin {
             androidContext(this@BaseApplication)
-            modules(listOf(viewModelModule, repositoryModule, dataSourceModule))
+            modules(listOf(viewModelModule, repositoryModule, dataSourceModule, resourceModule))
         }
     }
 
