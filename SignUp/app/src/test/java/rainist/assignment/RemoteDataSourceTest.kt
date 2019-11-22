@@ -6,8 +6,8 @@ import rainist.assignment.data.dao.UserEntity
 import rainist.assignment.data.datasource.remote.Http401Exception
 import rainist.assignment.data.datasource.remote.Http404Exception
 import rainist.assignment.data.datasource.remote.RemoteDataSourceImpl
-import rainist.assignment.util.ConstUtil
-import rainist.assignment.util.ConstUtil.AUTO_INCREMENT_DATA
+import rainist.assignment.util.ResourceUtil
+import rainist.assignment.util.ResourceUtil.AUTO_INCREMENT_DATA
 
 
 class RemoteDataSourceTest {
@@ -45,8 +45,8 @@ class RemoteDataSourceTest {
                 },
                 { error ->
                     when (error) {
-                        is Http404Exception -> assert(ConstUtil.ERROR_404 == error.toString())
-                        is Http401Exception -> assert(ConstUtil.ERROR_401 == error.toString())
+                        is Http404Exception -> assert(ResourceUtil.ERROR_404 == error.toString())
+                        is Http401Exception -> assert(ResourceUtil.ERROR_401 == error.toString())
                     }
                 }
             )
