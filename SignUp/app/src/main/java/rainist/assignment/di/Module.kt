@@ -11,10 +11,11 @@ import rainist.assignment.data.datasource.local.LocalDataSource
 import rainist.assignment.data.datasource.local.LocalDataSourceImpl
 import rainist.assignment.data.datasource.remote.RemoteDataSource
 import rainist.assignment.data.datasource.remote.RemoteDataSourceImpl
+import rainist.assignment.util.ResourceUtil
 import rainist.assignment.viewmodel.MainViewModel
 
 val viewModelModule = module {
-    viewModel { MainViewModel(get()) }
+    viewModel { MainViewModel(get(), get()) }
 }
 val repositoryModule = module {
     single<Repository> { RepositoryImpl(get(), get()) }
@@ -31,4 +32,8 @@ val dataSourceModule = module {
             .fallbackToDestructiveMigration()
             .build()
     }
+}
+
+val resourceModule = module {
+    single { ResourceUtil(androidContext().resources) }
 }
